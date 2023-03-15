@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-
+                <li class="nav-item"><a class="nav-link fw-bold" href="/courses">Kursevi</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -24,11 +24,16 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                            <a href="{{url('/user/edit', \Illuminate\Support\Facades\Auth::id())}}" class="dropdown-item">Izmeni profil</a>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                Odjavi se
                             </a>
+
+
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

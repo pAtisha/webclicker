@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" name="email" value="{{ old('email') }}" placeholder="name@example.com" required autocomplete="email">
-                        <label for="floatingInput">Email address</label>
+                        <label for="floatingInput">Email adresa</label>
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password" name="password" required autocomplete="current-password">
-                        <label for="floatingPassword">Password</label>
+                        <label for="floatingPassword">Šifra</label>
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -34,20 +34,20 @@
                         <div class="form-check">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" style="float: right" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                    Zaboravljena šifra?
                                 </a>
                             @endif
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                             <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
+                                Zapamti me
                             </label>
                         </div>
 
                     </div>
 
 
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Prijava</button>
                     <hr class="my-4">
                     <small class="text-muted">Ukoliko niste kreirali nalog, molimo Vas da se <a href="{{ route('register') }}">registrujete</a>. </small>
                 </form>
