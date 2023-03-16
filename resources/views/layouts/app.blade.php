@@ -17,15 +17,15 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app">
-        @include('user_nav.navbar')
+<div id="app">
+    @include('nav.navbar')
 
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+    <main class="py-4">
+        @yield('content')
+    </main>
 
-    </div>
-    @include('user_footer.footer')
+</div>
+@include('footer.footer')
 </body>
 </html>

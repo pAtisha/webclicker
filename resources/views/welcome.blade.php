@@ -5,7 +5,7 @@
         <div class="row align-items-center g-lg-5 py-5">
             <div class="col-lg-7 text-center text-lg-start">
                 <h1 class="display-4 fw-bold lh-1 mb-3">Dobro došli na WebClicker.</h1>
-                <p class="col-lg-10 fs-4">Na ovom sajtu možete rešavati testove iz raznih predmeta u dogovoru sa Vašim profesorom. Potrebno je da se registrujete ili prijavite kako biste nastavili.</p>
+                <p class="col-lg-10 fs-4">Na ovom sajtu možete rešavati testove iz raznih kurseva u dogovoru sa Vašim profesorom. Potrebno je da se registrujete ili prijavite kako biste nastavili.</p>
             </div>
             <div class="col-md-10 mx-auto col-lg-5">
                 <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST" action="{{ route('login') }}">
