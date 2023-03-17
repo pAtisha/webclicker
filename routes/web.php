@@ -45,7 +45,11 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
 Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function (){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
-    Route::get('/courses', [App\Http\Controllers\CourseController::class, 'professor_index']);
+    Route::get('/courses', [App\Http\Controllers\ProfessorController::class, 'show_courses']);
+    Route::post('/courses/create', [App\Http\Controllers\ProfessorController::class, 'create_course']);
+    Route::put('/courses/active/{id}', [App\Http\Controllers\ProfessorController::class, 'active_course']);
+    Route::delete('/courses/delete/{id}', [App\Http\Controllers\ProfessorController::class, 'delete_course']);
+
 });
 
 

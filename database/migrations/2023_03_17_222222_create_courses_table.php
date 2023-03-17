@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('password');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
+            $table->integer('user_id');
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }
