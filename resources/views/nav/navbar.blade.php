@@ -10,26 +10,32 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             @auth
-
-            @if(Auth::user()->isStudent())
             <ul class="navbar-nav me-auto">
+            @if(Auth::user()->isStudent())
+
                 <li class="nav-item"><a class="nav-link fw-bold" href="/student/courses">Kursevi</a></li>
-            </ul>
+
             @endif
 
-            @if(Auth::user()->isAdmin())
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link fw-bold" href="/admin/courses">Admin</a></li>
-                </ul>
+            @if(Auth::user()->isProfessor())
+
+                <li class="nav-item"><a href="/professor/link" class="nav-link fw-bold">Moji kursevi</a></li>
+
             @endif
+            @if(Auth::user()->isAdmin())
+                <li class="nav-item"><a class="nav-link fw-bold" href="/admin/users">Korisnici</a></li>
+
+            @endif
+
+            </ul>
 
             @endauth
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
-                @guest
-                @else
+
+                @auth
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
@@ -37,7 +43,7 @@
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                            <a href="{{url('/user/edit', \Illuminate\Support\Facades\Auth::id())}}" class="dropdown-item">Izmeni profil</a>
+                            <a href="{{url(Request::route()->getPrefix().'/user/edit', \Illuminate\Support\Facades\Auth::id())}}" class="dropdown-item">Izmeni profil</a>
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -52,7 +58,7 @@
                             </form>
                         </div>
                     </li>
-                @endguest
+                @endauth
             </ul>
         </div>
     </div>

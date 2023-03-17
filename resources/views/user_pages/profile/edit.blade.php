@@ -8,7 +8,7 @@
                     <div class="card-header">Izmeni profil</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ url('user/update', $user->id) }}">
+                        <form method="POST" action="{{ url(Request::route()->getPrefix().'/user/update', $user->id) }}">
                             @csrf
 
                             <div class="row mb-3">

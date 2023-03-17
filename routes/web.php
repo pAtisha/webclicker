@@ -15,10 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
 Route::get('/', function () {
-    if(auth()->user())
+    if(Auth::check())
     {
-        return redirect(route('home'));
+        if(Auth::user()->isStudent())
+        {
+            return redirect('student/home');
+        } elseif(Auth::user()->isProfessor()) {
+            return redirect('professor/home');
+        } else {
+            return redirect('admin/home');
+        }
+
     }
 
     return view('welcome');
@@ -27,20 +36,20 @@ Route::get('/', function () {
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
 
-    Route::get('/courses', function () {
-       return view('welcome');
-    });
+    Route::get('/home', [App\Http\Controllers\AdminController::class, 'home']);
+
+    Route::get('users', [App\Http\Controllers\AdminController::class, 'show_users']);
 });
 
 
 Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function (){
-
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 });
 
 
 Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function (){
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
     Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index']);
 
