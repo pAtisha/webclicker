@@ -27,6 +27,9 @@ Route::get('/', function () {
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
 
+    Route::get('/courses', function () {
+       return view('welcome');
+    });
 });
 
 
@@ -35,7 +38,7 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
 });
 
 
-Route::prefix('')->middleware('auth')->group(function (){
+Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function (){
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

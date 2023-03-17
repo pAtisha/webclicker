@@ -10,10 +10,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             @auth
+
+            @if(Auth::user()->isStudent())
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link fw-bold" href="/courses">Kursevi</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold" href="/student/courses">Kursevi</a></li>
             </ul>
+            @endif
+
+            @if(Auth::user()->isAdmin())
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="/admin/courses">Admin</a></li>
+                </ul>
+            @endif
+
             @endauth
+
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
