@@ -19,7 +19,7 @@
 
             @if(Auth::user()->isProfessor())
 
-                <li class="nav-item"><a href="/professor/link" class="nav-link fw-bold">Moji kursevi</a></li>
+                <li class="nav-item"><a href="/professor/courses" class="nav-link fw-bold">Moji kursevi</a></li>
 
             @endif
             @if(Auth::user()->isAdmin())

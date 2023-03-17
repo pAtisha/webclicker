@@ -26,4 +26,14 @@ class CourseController extends Controller
     {
         return view('user_pages.courses.show');
     }
+
+    /**
+     * Show all the courses to professor.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function professor_index()
+    {
+        return view('professor_pages.courses.show');
+    }
 }

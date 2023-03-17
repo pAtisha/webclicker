@@ -44,6 +44,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
 
 Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function (){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+
+    Route::get('/courses', [App\Http\Controllers\CourseController::class, 'professor_index']);
 });
 
 
