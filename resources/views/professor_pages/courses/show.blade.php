@@ -4,6 +4,7 @@
 
     @include('professor_pages.courses.create')
     @include('professor_pages.courses.delete')
+    @include('professor_pages.courses.edit')
 
     <div class="container">
         <div class="row justify-content-center">
@@ -42,7 +43,7 @@
                             <td>{{$course->name}}</td>
                             <td>{{$course->password}}</td>
                             <td>
-                                <button class="btn btn-primary">Izmeni</button>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editCourseModal" id="editCourseButton" value="{{$course->id}}">Izmeni</button>
                             </td>
                             <td>
                                 <button class="btn btn-danger btn-delete-course" data-bs-toggle="modal" data-bs-target="#deleteCourseModal" id="deleteCourseButton" value="{{$course->id}}">Obriši</button>

@@ -16,7 +16,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-no-delete-course" data-bs-dismiss="modal">Ne</button>
-                    <button type="submit" class="btn btn-danger">Obriši</button>
+                    <button type="submit" class="btn btn-danger btn-yes-delete-course">Obriši</button>
                 </div>
             </div>
         </div>

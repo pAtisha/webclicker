@@ -82,4 +82,26 @@ class ProfessorController extends Controller
 
         return redirect('/professor/courses')->with('success', 'Obrisali ste ' . $name . ' kurs.');
     }
+
+    public function edit_course($id)
+    {
+        $data = Course::find($id);
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function update_course(Request $request, $id)
+    {
+        Course::updateOrCreate(
+            [
+                'id' => $id
+            ],
+            [
+                'name' => $request->name,
+                'password' => $request->password,
+            ]
+        );
+
+        return response()->json([ 'success' => true ]);
+    }
 }

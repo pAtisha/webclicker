@@ -1,19 +1,33 @@
 import $ from "jquery";
 
 $(function(){
+    // Setup Token
 
-        $('.btn-delete-course').on('click', function(e){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-            e.preventDefault();
-            var id = $(this).val();
-            var url = document.getElementById('deleteFormCourse').action;
+    //edit course form show data
+    $('body').on('click', '#editCourseButton', function () {
+        var id = $(this).val();
+        $.get("/professor/courses/edit" +'/' + id, function (data) {
+            $('#name_course').val(data.data.name);
+            $('#password_course').val(data.data.password);
 
-            document.getElementById('deleteFormCourse').action += '/' + id;
+        })
+    });
 
-            $('.btn-no-delete-course').on('click', function (){
-                document.getElementById('deleteFormCourse').action = url;
-            });
-        });
+    $('.btn-edit-course').on('click', function(){
+
+    });
+
+
+    $('.btn-delete-course').on('click', function(){
+        const id = $(this).val();
+        $('#deleteFormCourse').attr('action', '/professor/courses/delete/' + id);
+    });
 
 
 });

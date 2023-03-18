@@ -49,6 +49,8 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     Route::post('/courses/create', [App\Http\Controllers\ProfessorController::class, 'create_course']);
     Route::put('/courses/active/{id}', [App\Http\Controllers\ProfessorController::class, 'active_course']);
     Route::delete('/courses/delete/{id}', [App\Http\Controllers\ProfessorController::class, 'delete_course']);
+    Route::get('/courses/edit/{id}', [App\Http\Controllers\ProfessorController::class, 'edit_course']);
+    Route::patch('/courses/update/{id}', [App\Http\Controllers\ProfessorController::class, 'update_course']);
 
 });
 
