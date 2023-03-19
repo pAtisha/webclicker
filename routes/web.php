@@ -61,6 +61,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function (){
 
     Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index']);
     Route::post('/courses/follow/create/{id}', [App\Http\Controllers\CourseController::class, 'follow']);
+    Route::post('/courses/unfollow/{id}', [App\Http\Controllers\CourseController::class, 'unfollow']);
 
 
     Route::get('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit']);

@@ -40,27 +40,24 @@
                             <td>{{$course->id}}</td>
                             <td>{{$course->name}}</td>
                             <td>{{$course->professor_name}}</td>
-                            <td>@if($course->following == '')Niste prijavljeni @else {{$course->following}}@endif</td>
+                            <td>@if($course->following == '')<p class="fw-bold">Niste prijavljeni</p> @else <p class="fw-bold">{{$course->following}}</p>@endif</td>
                             <td>
                                 @if($course->following == '')
                                 <form action="{{ url('/student/courses/follow/create',$course->id) }}" method="POST">
                                     @csrf
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
 
-                                    <button type="submit" class="btn btn-primary">Prijavi se</button>
+                                        <button type="submit" class="btn btn-primary">Prijavi se</button>
+                                    </div>
                                 </form>
                                 @else
-                                    <form action="{{ url('/student/courses/unfollow/',$course->id) }}" method="POST">
+                                    <form action="{{ url('/student/courses/unfollow',$course->id) }}" method="POST">
                                         @csrf
 
                                         <button type="submit" class="btn btn-danger">Odjavi se</button>
                                     </form>
                                 @endif
-                            </td>
-                            <td>
-                                <div class="input-group mb-2">
-                                    <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-secondary" type="button" id="btn-follow-course">Prijava</button>
-                                </div>
                             </td>
                         </tr>
                     @endforeach
