@@ -102,6 +102,6 @@ class ProfessorController extends Controller
             ]
         );
 
-        return response()->json([ 'success' => true ]);
+        return redirect('/professor/courses')->with('success', 'Uspešno ste ažurirali kurs.');
     }
 }

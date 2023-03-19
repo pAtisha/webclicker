@@ -33,7 +33,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Šifra</th>
-                        <th scope="col">Akcija</th>
+                        <th scope="col" colspan="2">Akcija</th>
+                        <th scope="col">Aktivnost</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,7 +44,7 @@
                             <td>{{$course->name}}</td>
                             <td>{{$course->password}}</td>
                             <td>
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editCourseModal" id="editCourseButton" value="{{$course->id}}">Izmeni</button>
+                                <button type="button" class="btn btn-warning btn-edit-course" data-bs-toggle="modal" data-bs-target="#editCourseModal" id="editCourseButton" value="{{$course->id}}">Izmeni</button>
                             </td>
                             <td>
                                 <button class="btn btn-danger btn-delete-course" data-bs-toggle="modal" data-bs-target="#deleteCourseModal" id="deleteCourseButton" value="{{$course->id}}">Obriši</button>

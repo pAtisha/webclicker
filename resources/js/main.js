@@ -19,8 +19,9 @@ $(function(){
         })
     });
 
-    $('.btn-edit-course').on('click', function(){
-
+    $('.btn-edit-course').on('click', function (){
+       const id = $(this).val();
+       $('#editFormCourse').attr('action', '/professor/courses/update/' + id);
     });
 
 

@@ -1,5 +1,6 @@
 <form action="{{ url('/professor/courses/edit') }}" method="POST" enctype="multipart/form-data" id="editFormCourse">
     @csrf
+    @method('patch')
     <!-- Modal -->
     <div class="modal fade" id="editCourseModal" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true">
         <div class="modal-dialog">
