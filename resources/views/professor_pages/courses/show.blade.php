@@ -33,7 +33,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Šifra</th>
-                        <th scope="col" colspan="2">Akcija</th>
+                        <th scope="col" colspan="3">Akcija</th>
                         <th scope="col">Aktivnost</th>
                     </tr>
                     </thead>
@@ -46,6 +46,7 @@
                             <td>
                                 <button type="button" class="btn btn-warning btn-edit-course" data-bs-toggle="modal" data-bs-target="#editCourseModal" id="editCourseButton" value="{{$course->id}}">Izmeni</button>
                             </td>
+                            <td><a href="{{url('/professor/courses', $course->id)}}" class="btn btn-primary">Testovi</a></td>
                             <td>
                                 <button class="btn btn-danger btn-delete-course" data-bs-toggle="modal" data-bs-target="#deleteCourseModal" id="deleteCourseButton" value="{{$course->id}}">Obriši</button>
                             </td>

@@ -30,6 +30,19 @@ $(function(){
         })
     });
 
+    //edit user form show data
+    $('body').on('click', '#editTestButton', function () {
+        var id = $(this).val();
+        $.get("/professor/courses/edit/test" +'/' + id, function (data) {
+            $('#name_test').val(data.data.name);
+            $('#password_test').val(data.data.password);
+            $('#time_test').val(data.data.time);
+
+        })
+    });
+
+    //edit buttons
+
     $('.btn-edit-course').on('click', function (){
        const id = $(this).val();
        $('#editFormCourse').attr('action', '/professor/courses/update/' + id);
@@ -40,6 +53,13 @@ $(function(){
         $('#editFormUser').attr('action', '/admin/users/update/' + id);
     });
 
+    $('.btn-edit-test').on('click', function (){
+        const id = $(this).val();
+        $('#editFormTest').attr('action', '/professor/courses/update/test/' + id);
+    });
+
+    //delete buttons
+
     $('.btn-delete-course').on('click', function(){
         const id = $(this).val();
         $('#deleteFormCourse').attr('action', '/professor/courses/delete/' + id);
@@ -48,6 +68,17 @@ $(function(){
     $('.btn-delete-user').on('click', function(){
         const id = $(this).val();
         $('#deleteFormUser').attr('action', '/admin/users/delete/' + id);
+    });
+
+    $('.btn-delete-test').on('click', function(){
+        const id = $(this).val();
+        $('#deleteFormTest').attr('action', '/professor/courses/delete/test/' + id);
+    });
+
+    //create buttons
+    $('.btn-create-test').on('click', function(){
+        const id = $(this).val();
+        $('#test_course_id').val(id);
     });
 
 

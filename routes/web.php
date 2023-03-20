@@ -42,12 +42,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::delete('/users/delete/{id}', [App\Http\Controllers\AdminController::class, 'delete_user']);
     Route::get('users/edit/{id}',[App\Http\Controllers\AdminController::class, 'edit_user']);
     Route::patch('users/update/{id}', [App\Http\Controllers\AdminController::class, 'update_user']);
+    Route::patch('users/update/role/{id}', [App\Http\Controllers\AdminController::class, 'update_role']);
 });
 
 
 Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function (){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
+    //courses
     Route::get('/courses', [App\Http\Controllers\ProfessorController::class, 'show_courses']);
     Route::post('/courses/create', [App\Http\Controllers\ProfessorController::class, 'create_course']);
     Route::put('/courses/active/{id}', [App\Http\Controllers\ProfessorController::class, 'active_course']);
@@ -55,6 +57,13 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     Route::get('/courses/edit/{id}', [App\Http\Controllers\ProfessorController::class, 'edit_course']);
     Route::patch('/courses/update/{id}', [App\Http\Controllers\ProfessorController::class, 'update_course']);
 
+    //tests
+    Route::get('/courses/{id}', [App\Http\Controllers\ProfessorController::class, 'show_tests']);
+    Route::post('/courses/create/test', [App\Http\Controllers\ProfessorController::class, 'create_test']);
+    Route::delete('/courses/delete/test/{id}', [App\Http\Controllers\ProfessorController::class, 'delete_test']);
+    Route::get('/courses/edit/test/{id}', [App\Http\Controllers\ProfessorController::class, 'edit_test']);
+    Route::patch('/courses/update/test/{id}', [App\Http\Controllers\ProfessorController::class, 'update_test']);
+    Route::put('/courses/active/test/{id}', [App\Http\Controllers\ProfessorController::class, 'active_test']);
 });
 
 

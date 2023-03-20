@@ -29,7 +29,7 @@
                         <th scope="col">Tip</th>
                         <th scope="col">Broj indeksa</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Akcija</th>
+                        <th scope="col" colspan="3">Akcija</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -37,18 +37,11 @@
                     <tr>
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
-                        <td>
-                            @if($user->role == 0)
-                                {{'Student'}}
-                            @else
-                                {{'Profesor'}}
-                            @endif
-                        </td>
+                        <td>{{$user->role_text}}</td>
                         <td>
                             @if($user->role == 0)
                                 {{$user->index_number}}
                             @endif
-
                         </td>
                         <td>{{$user->email}}</td>
                         <td>
@@ -57,7 +50,20 @@
                         <td>
                             <button class="btn btn-danger btn-delete-user" data-bs-toggle="modal" data-bs-target="#deleteUserModal" id="deleteUserButton" value="{{$user->id}}">Obriši</button>
                         </td>
-                        <td><button class="btn btn-primary">Profesor</button></td>
+                        <td>
+                            <form action="{{ url('/admin/users/update/role',$user->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                <button class="btn btn-primary" type="submit">
+                                    @if($user->role_text == 'Student')
+                                        {{'Profesor'}}
+                                    @else
+                                        {{'Student'}}
+                                    @endif
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>
