@@ -34,4 +34,38 @@ class AdminController extends Controller
 
         return view('admin_pages.users', ['users' => $users]);
     }
+
+    public function delete_user($id)
+    {
+        $user = User::find($id);
+
+        $name = $user->name;
+
+        $user->delete();
+
+        return redirect('/admin/users')->with('success', 'Obrisali ste korisnika pod imenom '. $name);
+    }
+
+    public function edit_user($id)
+    {
+        $data = User::find($id);
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function update_user(Request $request, $id)
+    {
+        User::updateOrCreate(
+            [
+                'id' => $id
+            ],
+            [
+                'name' => $request->name,
+                'index_number' => $request->index_number,
+                'email' => $request->email,
+            ]
+        );
+
+        return redirect('/admin/users')->with('success', 'Uspešno ste ažurirali korisnika.');
+    }
 }

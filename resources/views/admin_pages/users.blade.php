@@ -2,6 +2,9 @@
 
 @section('content')
 
+    @include('admin_pages.delete')
+    @include('admin_pages.edit')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -12,6 +15,9 @@
                         <li class="breadcrumb-item active" aria-current="page">Korisnici</li>
                     </ol>
                 </nav>
+
+                @include('messages.errors')
+                @include('messages.success')
 
                 <hr class="border border-dark border-2 opacity-50">
 
@@ -46,9 +52,11 @@
                         </td>
                         <td>{{$user->email}}</td>
                         <td>
-                            <button class="btn btn-primary">Izmeni</button>
+                            <button type="button" class="btn btn-warning btn-edit-user" data-bs-toggle="modal" data-bs-target="#editUserModal" id="editUserButton" value="{{$user->id}}">Izmeni</button>
                         </td>
-                        <td><button class="btn btn-primary">Obriši</button></td>
+                        <td>
+                            <button class="btn btn-danger btn-delete-user" data-bs-toggle="modal" data-bs-target="#deleteUserModal" id="deleteUserButton" value="{{$user->id}}">Obriši</button>
+                        </td>
                         <td><button class="btn btn-primary">Profesor</button></td>
                     </tr>
                     @endforeach
