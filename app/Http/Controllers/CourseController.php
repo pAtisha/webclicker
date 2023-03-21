@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Follow;
+use App\Models\Test;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,6 +96,16 @@ class CourseController extends Controller
 
         return redirect('/student/courses')
             ->with('success', 'Uspešno ste se odjavili sa kursa.');
+    }
+
+    public function show_tests($id)
+    {
+        $course = Course::find($id);
+
+        $tests = Test::where('course_id', '=', $id)->where('active', '=', 1)->get();
+
+        return view('user_pages.tests.show', ['course' => $course,
+            'tests' => $tests]);
     }
 
 }

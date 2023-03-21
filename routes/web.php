@@ -71,13 +71,17 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function (){
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
+    //courses
     Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index']);
     Route::post('/courses/follow/create/{id}', [App\Http\Controllers\CourseController::class, 'follow']);
     Route::post('/courses/unfollow/{id}', [App\Http\Controllers\CourseController::class, 'unfollow']);
 
-
+    //profile
     Route::get('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit']);
     Route::post('/user/update/{id}', [App\Http\Controllers\UserController::class, 'update']);
+
+    //tests
+    Route::get('/courses/{id}', [App\Http\Controllers\CourseController::class, 'show_tests']);
 });
 
 

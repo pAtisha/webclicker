@@ -31,7 +31,7 @@
                         <th scope="col">Ime predmeta</th>
                         <th scope="col">Profesor</th>
                         <th scope="col">Status prijave</th>
-                        <th scope="col">Akcija</th>
+                        <th scope="col" colspan="3">Akcija</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,24 +41,26 @@
                             <td>{{$course->name}}</td>
                             <td>{{$course->professor_name}}</td>
                             <td>@if($course->following == '')<p class="fw-bold">Niste prijavljeni</p> @else <p class="fw-bold">{{$course->following}}</p>@endif</td>
+                            @if($course->following == '')
                             <td>
-                                @if($course->following == '')
-                                <form action="{{ url('/student/courses/follow/create',$course->id) }}" method="POST">
-                                    @csrf
-                                    <div class="input-group mb-2">
-                                        <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
+                            <form action="{{ url('/student/courses/follow/create',$course->id) }}" method="POST">
+                                @csrf
+                                <div class="input-group mb-2">
+                                    <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
 
-                                        <button type="submit" class="btn btn-primary">Prijavi se</button>
-                                    </div>
-                                </form>
-                                @else
-                                    <form action="{{ url('/student/courses/unfollow',$course->id) }}" method="POST">
-                                        @csrf
-
-                                        <button type="submit" class="btn btn-danger">Odjavi se</button>
-                                    </form>
-                                @endif
+                                    <button type="submit" class="btn btn-primary">Prijavi se</button>
+                                </div>
+                            </form>
                             </td>
+                            @else
+                            <td>
+                                <form action="{{ url('/student/courses/unfollow',$course->id) }}" method="POST">
+                                    @csrf
+                                    <a href="{{url('/student/courses', $course->id)}}" class="btn btn-primary">Testovi</a>
+                                    <button type="submit" class="btn btn-danger">Odjavi se</button>
+                                </form>
+                            </td>
+                            @endif
                         </tr>
                     @endforeach
                     </tbody>
