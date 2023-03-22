@@ -81,5 +81,11 @@ $(function(){
         $('#test_course_id').val(id);
     });
 
+    //create buttons
+    $('.btn-create-question').on('click', function(){
+        const id = $(this).val();
+        $('#test_question_id').val(id);
+    });
+
 
 });

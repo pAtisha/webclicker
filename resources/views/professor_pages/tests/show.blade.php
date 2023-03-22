@@ -36,8 +36,9 @@
                         <th scope="col">Naziv</th>
                         <th scope="col">Šifra</th>
                         <th scope="col">Vreme</th>
-                        <th scope="col" colspan="2">Akcija</th>
+                        <th scope="col" colspan="3">Akcija</th>
                         <th scope="col">Aktivnost</th>
+                        <th scope="col">Otvoren</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,9 @@
                                 <button type="button" class="btn btn-warning btn-edit-test" data-bs-toggle="modal" data-bs-target="#editTestModal" id="editTestButton" value="{{$test->id}}">Izmeni</button>
                             </td>
                             <td>
+                                <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/'. $test->id)}}">Pitanja</a>
+                            </td>
+                            <td>
                                 <button class="btn btn-danger btn-delete-test" data-bs-toggle="modal" data-bs-target="#deleteTestModal" id="deleteTestButton" value="{{$test->id}}">Obriši</button>
                             </td>
                             <td>
@@ -60,6 +64,17 @@
 
                                     <div class="form-check form-switch">
                                         <input onchange="this.form.submit()" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($test->active)checked @endif>
+                                    </div>
+
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{{ url('/professor/courses/open/test',$test->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+
+                                    <div class="form-check form-switch">
+                                        <input onchange="this.form.submit()" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($test->open)checked @endif>
                                     </div>
 
                                 </form>

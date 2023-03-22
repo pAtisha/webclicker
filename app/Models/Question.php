@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Test extends Model
+class Question extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'password', 'course_id', 'time', 'user_id', 'active', 'open'];
+    protected $fillable = ['user_id', 'test_id', 'course_id', 'question', 'points'];
 }

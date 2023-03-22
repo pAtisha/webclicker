@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Question;
 use App\Models\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -136,6 +137,8 @@ class ProfessorController extends Controller
 
         $input['user_id'] = Auth::id();
         $input['course_id'] = $request->course_id;
+        $input['open'] = 0;
+
 
         Test::create($input);
 
@@ -183,8 +186,43 @@ class ProfessorController extends Controller
 
         $test->active = !$test->active;
 
+        if($test->open == 1)
+            $test->open = 0;
+
         $test->update();
 
         return redirect()->back()->with('success','Aktivnost testa ' . $name . ' uspešno izmenjena.');
+    }
+
+    public function open_test($id)
+    {
+        $test = Test::find($id);
+        if($test->active == 0)
+            return redirect()->back()->with('error', 'Test prvo mora biti aktivan!');
+
+        $test->open = !$test->open;
+
+        $test->update();
+
+        return redirect()->back()->with('success', 'Test je sada otvoren!');
+    }
+
+    public function show_questions(Request $request, $id)
+    {
+        $test = Test::find($id);
+        $course_id = $test->course_id;
+
+        $questions = Question::where('test_id', '=', $id);
+
+        return view('professor_pages.questions.show', ['test' => $test,
+            'questions' => $questions,
+            'course_id' => $course_id]);
+
+    }
+
+    public function create_question(Request $request)
+    {
+
+
     }
 }
