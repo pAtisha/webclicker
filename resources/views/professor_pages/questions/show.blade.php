@@ -3,6 +3,8 @@
 @section('content')
 
     @include('professor_pages.questions.create')
+    @include('professor_pages.questions.edit')
+    @include('professor_pages.questions.delete')
 
     <div class="container">
         <div class="row justify-content-center">
@@ -32,15 +34,37 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Naziv</th>
-                        <th scope="col">Šifra</th>
-                        <th scope="col">Vreme</th>
-                        <th scope="col" colspan="3">Akcija</th>
+                        <th scope="col">Pitanje</th>
+                        <th scope="col">Poeni</th>
+                        <th scope="col" colspan="2">Akcija</th>
                         <th scope="col">Aktivnost</th>
-                        <th scope="col">Otvoren</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($questions as $question)
+                        <tr>
+                            <td>{{$question->id}}</td>
+                            <td>{{$question->question}}</td>
+                            <td>{{$question->points}}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-edit-question" data-bs-toggle="modal" data-bs-target="#editQuestionModal" id="editQuestionButton" value="{{$question->id}}">Izmeni</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-delete-question" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal" id="deleteQuestionButton" value="{{$question->id}}">Obriši</button>
+                            </td>
+                            <td>
+                                <form action="{{ url('/professor/courses/active/questions/test/active',$question->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+
+                                    <div class="form-check form-switch">
+                                        <input onchange="this.form.submit()" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($question->active)checked @endif>
+                                    </div>
+
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
 

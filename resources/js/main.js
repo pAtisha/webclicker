@@ -30,13 +30,23 @@ $(function(){
         })
     });
 
-    //edit user form show data
+    //edit test form show data
     $('body').on('click', '#editTestButton', function () {
         var id = $(this).val();
         $.get("/professor/courses/edit/test" +'/' + id, function (data) {
             $('#name_test').val(data.data.name);
             $('#password_test').val(data.data.password);
             $('#time_test').val(data.data.time);
+
+        })
+    });
+
+    //edit question form show data
+    $('body').on('click', '#editQuestionButton', function () {
+        var id = $(this).val();
+        $.get("/professor/courses/questions/test/edit" +'/' + id, function (data) {
+            $('#question_edit').val(data.data.question);
+            $('#points_edit').val(data.data.points);
 
         })
     });
@@ -58,6 +68,11 @@ $(function(){
         $('#editFormTest').attr('action', '/professor/courses/update/test/' + id);
     });
 
+    $('.btn-edit-question').on('click', function (){
+        const id = $(this).val();
+        $('#editFormQuestion').attr('action', '/professor/courses/questions/test/update/' + id);
+    });
+
     //delete buttons
 
     $('.btn-delete-course').on('click', function(){
@@ -75,13 +90,17 @@ $(function(){
         $('#deleteFormTest').attr('action', '/professor/courses/delete/test/' + id);
     });
 
+    $('.btn-delete-question').on('click', function(){
+        const id = $(this).val();
+        $('#deleteFormQuestion').attr('action', '/professor/courses/question/delete/test/' + id);
+    });
+
     //create buttons
     $('.btn-create-test').on('click', function(){
         const id = $(this).val();
         $('#test_course_id').val(id);
     });
 
-    //create buttons
     $('.btn-create-question').on('click', function(){
         const id = $(this).val();
         $('#test_question_id').val(id);

@@ -204,15 +204,15 @@ class ProfessorController extends Controller
 
         $test->update();
 
-        return redirect()->back()->with('success', 'Test je sada otvoren!');
+        return redirect()->back()->with('success', 'Otvorenost testa je sada izmenjena.');
     }
 
-    public function show_questions(Request $request, $id)
+    public function show_questions($id)
     {
         $test = Test::find($id);
         $course_id = $test->course_id;
 
-        $questions = Question::where('test_id', '=', $id);
+        $questions = Question::where('test_id', '=', $id)->get();
 
         return view('professor_pages.questions.show', ['test' => $test,
             'questions' => $questions,
@@ -222,7 +222,75 @@ class ProfessorController extends Controller
 
     public function create_question(Request $request)
     {
+        $request->validate([
+            'question' => 'required',
+            'points' => ['required', 'numeric', 'max:60', 'min:1'],
+        ]);
+
+        $input = $request->all();
+
+        if($request->has('active'))
+        {
+            if($input['active'] == "on")
+                $input['active'] = 1;
+            else
+                $input['active'] = 0;
+        }
+        else
+            $input['active'] = 0;
+
+        $input['user_id'] = Auth::id();
+        $input['test_id'] = $request->test_id;
+        $input['course_id'] = Test::find($input['test_id'])->course_id;
+
+        Question::create($input);
+
+        return back()
+            ->with('success','Pitanje uspešno dodato.');
 
 
+
+    }
+
+    public function active_question($id)
+    {
+        $question = Question::find($id);
+
+        $question->active = !$question->active;
+
+        $question->update();
+
+        return redirect()->back()->with('success','Aktivnost pitanja uspešno izmenjena.');
+    }
+
+    public function edit_question($id)
+    {
+        $data = Question::find($id);
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function update_question(Request $request, $id)
+    {
+        Question::updateOrCreate(
+            [
+                'id' => $id
+            ],
+            [
+                'question' => $request->question,
+                'points' => $request->points,
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Uspešno ste ažurirali pitanje.');
+    }
+
+    public function delete_question($id)
+    {
+        $question = Question::find($id);
+
+        $question->delete();
+
+        return redirect()->back()->with('success', 'Pitanje uspešno obrisano.');
     }
 }
