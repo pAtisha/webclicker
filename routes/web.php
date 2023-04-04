@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,10 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+
+//Google
+Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
+Route::get('callback/google', [GoogleController::class, 'callbackToGoogle']);
 
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){

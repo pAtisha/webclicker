@@ -17,11 +17,6 @@
                 @include('messages.errors')
                 @include('messages.success')
 
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    <strong>Napomena!</strong> Za kurseve koje ne koriste šifru samo se prijavite.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-
                 <hr class="border border-dark border-2 opacity-50">
 
                 <table class="table table-striped">
@@ -43,14 +38,23 @@
                             <td>@if($course->following == '')<p class="fw-bold">Niste prijavljeni</p> @else <p class="fw-bold">{{$course->following}}</p>@endif</td>
                             @if($course->following == '')
                             <td>
-                            <form action="{{ url('/student/courses/follow/create',$course->id) }}" method="POST">
-                                @csrf
-                                <div class="input-group mb-2">
-                                    <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
+                            @if($course->password)
+                                    <form action="{{ url('/student/courses/follow/create',$course->id) }}" method="POST">
+                                        @csrf
+                                        <div class="input-group mb-2">
+                                            <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
 
-                                    <button type="submit" class="btn btn-primary">Prijavi se</button>
-                                </div>
-                            </form>
+                                            <button type="submit" class="btn btn-primary">Prijavi se</button>
+                                        </div>
+                                    </form>
+                            @else
+                                    <form action="{{ url('/student/courses/follow/create',$course->id) }}" method="POST">
+                                        @csrf
+                                        <div class="input-group mb-2">
+                                            <button type="submit" class="btn btn-primary">Prijavi se</button>
+                                        </div>
+                                    </form>
+                            @endif
                             </td>
                             @else
                             <td>

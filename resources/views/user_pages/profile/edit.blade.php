@@ -7,6 +7,9 @@
                 <div class="card">
                     <div class="card-header">Izmeni profil</div>
 
+                    @include('messages.errors')
+                    @include('messages.success')
+
                     <div class="card-body">
                         <form method="POST" action="{{ url(Request::route()->getPrefix().'/user/update', $user->id) }}">
                             @csrf

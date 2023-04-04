@@ -8,8 +8,6 @@
 
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 
-                    <button class="btn btn-primary btn-create-test" value="{{$course->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addTestModal">Dodaj Test</button>
-
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/student/home">Početna</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/student/courses">Kursevi</a></li>
@@ -33,19 +31,31 @@
                     </thead>
                     <tbody>
                     @foreach($tests as $test)
+                        <tr>
                         <td>{{$test->id}}</td>
                         <td>{{$test->name}}</td>
                         <td>{{$test->time}}</td>
                         <td>
-                            <form action="{{ url('/student/courses/test/create') }}" method="POST">
-                                @csrf
-                                <div class="input-group mb-2">
-                                    <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
+                            @if($test->password)
+                                <form action="{{ url('/student/courses/test/create') }}" method="POST">
+                                    @csrf
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
 
-                                    <button class="btn btn-success @if($test->open == 0)disabled @endif" type="submit">Započni</button>
-                                </div>
-                            </form>
+                                        <button class="btn btn-success @if($test->open == 0)disabled @endif" type="submit">Započni</button>
+                                    </div>
+                                </form>
+                            @else
+                                <form action="{{ url('/student/courses/test/create') }}" method="POST">
+                                    @csrf
+                                    <div class="input-group mb-2">
+                                        <button class="btn btn-success @if($test->open == 0)disabled @endif" type="submit">Započni</button>
+                                    </div>
+                                </form>
+                            @endif
+
                         </td>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>

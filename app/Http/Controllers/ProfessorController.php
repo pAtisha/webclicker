@@ -9,6 +9,9 @@ use App\Models\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
+
 class ProfessorController extends Controller
 {
     /**
@@ -204,6 +207,10 @@ class ProfessorController extends Controller
 
         $test->update();
 
+        //$loggedUsers = $this->getLoggedInUsers();
+
+        //dd($loggedUsers);
+
         return redirect()->back()->with('success', 'Otvorenost testa je sada izmenjena.');
     }
 
@@ -293,4 +300,29 @@ class ProfessorController extends Controller
 
         return redirect()->back()->with('success', 'Pitanje uspešno obrisano.');
     }
+
+
+//    public function getLoggedInUsers()
+//    {
+//        // Get all the session IDs from Redis
+//        $sessionIds = Redis::connection()->keys('laravel:session:*');
+//
+//        // Filter out the session IDs that don't belong to authenticated users
+//        $authenticatedSessionIds = collect($sessionIds)->filter(function ($id) {
+//            $data = Redis::connection()->get($id);
+//            $userData = unserialize($data)['_auth_user_id'] ?? null;
+//            return $userData !== null;
+//        });
+//
+//        // Use the session IDs to get the authenticated users
+//        $users = $authenticatedSessionIds->map(function ($id) {
+//            $data = Redis::connection()->get($id);
+//            $userData = unserialize($data)['_auth_user_id'];
+//            return Cache::remember('user:'.$userData, 60, function () use ($userData) {
+//                return Auth::loginUsingId($userData);
+//            });
+//        });
+//
+//        return $users;
+//    }
 }
