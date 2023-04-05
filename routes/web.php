@@ -78,6 +78,14 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     Route::get('/courses/questions/test/edit/{id}', [App\Http\Controllers\ProfessorController::class, 'edit_question']);
     Route::patch('/courses/questions/test/update/{id}', [App\Http\Controllers\ProfessorController::class, 'update_question']);
     Route::delete('/courses/question/delete/test/{id}', [App\Http\Controllers\ProfessorController::class, 'delete_question']);
+
+    //answers
+    Route::get('/courses/questions/test/answers/{id}', [App\Http\Controllers\ProfessorController::class, 'show_answers']);
+    Route::post('/courses/questions/test/answers/create', [App\Http\Controllers\ProfessorController::class, 'create_answer']);
+    Route::put('/courses/active/questions/test/answers/active/{id}', [App\Http\Controllers\ProfessorController::class, 'active_answer']);
+    Route::delete('/courses/question/delete/test/answers/{id}', [App\Http\Controllers\ProfessorController::class, 'delete_answer']);
+    Route::get('/courses/questions/test/answers/edit/{id}', [App\Http\Controllers\ProfessorController::class, 'edit_answer']);
+    Route::patch('/courses/questions/test/answers/update/{id}', [App\Http\Controllers\ProfessorController::class, 'update_answer']);
 });
 
 

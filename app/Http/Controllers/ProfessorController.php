@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Question;
 use App\Models\Test;
@@ -325,4 +326,95 @@ class ProfessorController extends Controller
 //
 //        return $users;
 //    }
+
+    public function show_answers($id)
+    {
+        $question = Question::find($id);
+
+        $course_id = $question->course_id;
+
+        $answers = Answer::where('question_id', '=', $question->id)->get();
+
+        return view('professor_pages.answers.show', ['answers' => $answers,
+            'course_id' => $course_id,
+            'question' => $question]);
+    }
+
+    public function create_answer(Request $request)
+    {
+        $request->validate([
+            'answer' => 'required',
+            'points' => ['required', 'numeric'],
+        ]);
+
+        $input = $request->all();
+
+        if($request->has('active'))
+        {
+            if($input['active'] == "on")
+                $input['active'] = 1;
+            else
+                $input['active'] = 0;
+        }
+        else
+            $input['active'] = 0;
+
+        $input['question_id'] = $request->question_id;
+        $input['user_id'] = Auth::id();
+        $question = Question::find($request->question_id);
+        $input['test_id'] = $question->test_id;
+        $input['course_id'] = $question->course_id;
+
+        Answer::create($input);
+
+        return back()
+            ->with('success','Odgovor uspešno dodat.');
+    }
+
+    public function active_answer($id)
+    {
+        $answer = Answer::find($id);
+
+        $answer->active = !$answer->active;
+
+        $answer->update();
+
+        return redirect()->back()->with('success','Aktivnost odgovora uspešno izmenjena.');
+    }
+
+    public function delete_answer($id)
+    {
+        $answer = Answer::find($id);
+
+        $answer->delete();
+
+        return redirect()->back()->with('success', 'Odgovor uspešno obrisan.');
+    }
+
+    public function edit_answer($id)
+    {
+        $data = Answer::find($id);
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function update_answer(Request $request, $id)
+    {
+        $request->validate([
+            'answer' => 'required',
+            'points' => ['required', 'numeric'],
+        ]);
+
+        Answer::updateOrCreate(
+            [
+                'id' => $id
+            ],
+            [
+                'answer' => $request->answer,
+                'points' => $request->points,
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Uspešno ste ažurirali odgovor.');
+    }
 }

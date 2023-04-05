@@ -36,7 +36,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Pitanje</th>
                         <th scope="col">Poeni</th>
-                        <th scope="col" colspan="2">Akcija</th>
+                        <th scope="col" colspan="3">Akcija</th>
                         <th scope="col">Aktivnost</th>
                     </tr>
                     </thead>
@@ -48,6 +48,9 @@
                             <td>{{$question->points}}</td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-edit-question" data-bs-toggle="modal" data-bs-target="#editQuestionModal" id="editQuestionButton" value="{{$question->id}}">Izmeni</button>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/answers/'. $question->id)}}">Odgovori</a>
                             </td>
                             <td>
                                 <button class="btn btn-danger btn-delete-question" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal" id="deleteQuestionButton" value="{{$question->id}}">Obriši</button>

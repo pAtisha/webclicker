@@ -51,6 +51,16 @@ $(function(){
         })
     });
 
+    //edit answer form show data
+    $('body').on('click', '#editAnswerButton', function () {
+        var id = $(this).val();
+        $.get("/professor/courses/questions/test/answers/edit" +'/' + id, function (data) {
+            $('#answer_edit').val(data.data.answer);
+            $('#points_edit').val(data.data.points);
+
+        })
+    });
+
     //edit buttons
 
     $('.btn-edit-course').on('click', function (){
@@ -71,6 +81,11 @@ $(function(){
     $('.btn-edit-question').on('click', function (){
         const id = $(this).val();
         $('#editFormQuestion').attr('action', '/professor/courses/questions/test/update/' + id);
+    });
+
+    $('.btn-edit-answer').on('click', function (){
+        const id = $(this).val();
+        $('#editFormAnswer').attr('action', '/professor/courses/questions/test/answers/update/' + id);
     });
 
     //delete buttons
@@ -95,6 +110,11 @@ $(function(){
         $('#deleteFormQuestion').attr('action', '/professor/courses/question/delete/test/' + id);
     });
 
+    $('.btn-delete-answer').on('click', function(){
+        const id = $(this).val();
+        $('#deleteFormAnswer').attr('action', '/professor/courses/question/delete/test/answers/' + id);
+    });
+
     //create buttons
     $('.btn-create-test').on('click', function(){
         const id = $(this).val();
@@ -104,6 +124,11 @@ $(function(){
     $('.btn-create-question').on('click', function(){
         const id = $(this).val();
         $('#test_question_id').val(id);
+    });
+
+    $('.btn-create-answer').on('click', function(){
+        const id = $(this).val();
+        $('#test_question_id_answer').val(id);
     });
 
 
