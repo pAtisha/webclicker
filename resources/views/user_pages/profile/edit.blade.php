@@ -56,27 +56,41 @@
                                 </div>
                             </div>
 
-{{--                            <div class="row mb-3">--}}
-{{--                                <label for="password" class="col-md-4 col-form-label text-md-end">Šifra</label>--}}
+                            <div class="row mb-3">
+                                <label for="password" class="col-md-4 col-form-label text-md-end">Stara šifra</label>
 
-{{--                                <div class="col-md-6">--}}
-{{--                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">--}}
+                                <div class="col-md-6">
+                                    <input id="old_password" type="password" class="form-control @error('password') is-invalid @enderror" name="old_password">
 
-{{--                                    @error('password')--}}
-{{--                                    <span class="invalid-feedback" role="alert">--}}
-{{--                                        <strong>{{ $message }}</strong>--}}
-{{--                                    </span>--}}
-{{--                                    @enderror--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
 
-{{--                            <div class="row mb-3">--}}
-{{--                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Potvrda šifre</label>--}}
+                            <div class="row mb-3">
+                                <label for="password" class="col-md-4 col-form-label text-md-end">Nova šifra</label>
 
-{{--                                <div class="col-md-6">--}}
-{{--                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                                <div class="col-md-6">
+                                    <input id="new_password" type="password" class="form-control @error('password') is-invalid @enderror" name="new_password">
+
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Potvrda nove šifre</label>
+
+                                <div class="col-md-6">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                </div>
+                            </div>
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">

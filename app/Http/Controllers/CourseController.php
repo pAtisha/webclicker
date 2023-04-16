@@ -100,12 +100,23 @@ class CourseController extends Controller
 
     public function show_tests($id)
     {
-        $course = Course::find($id);
+        //check if user is following test
+        $user = Auth::user();
+        $course_id = $id;
 
-        $tests = Test::where('course_id', '=', $id)->where('active', '=', 1)->get();
+        $follow = Follow::where('user_id', '=', $user->id)->where('course_id', '=', $course_id)->get();
 
-        return view('user_pages.tests.show', ['course' => $course,
-            'tests' => $tests]);
+        if($follow->first())
+        {
+            $course = Course::find($id);
+
+            $tests = Test::where('course_id', '=', $id)->where('active', '=', 1)->get();
+
+            return view('user_pages.tests.show', ['course' => $course,
+                'tests' => $tests]);
+        }
+        else
+            return redirect()->back()->with('error', 'Morate se prijaviti na kurs!');
     }
 
 }
