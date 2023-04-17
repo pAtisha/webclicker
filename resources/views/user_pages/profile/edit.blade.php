@@ -56,6 +56,8 @@
                                 </div>
                             </div>
 
+                            @if(!$user->gauth_id)
+
                             <div class="row mb-3">
                                 <label for="password" class="col-md-4 col-form-label text-md-end">Stara šifra</label>
 
@@ -91,6 +93,8 @@
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                                 </div>
                             </div>
+
+                            @endif
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
