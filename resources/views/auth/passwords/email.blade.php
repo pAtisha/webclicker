@@ -40,6 +40,17 @@
                         </div>
                     </form>
                 </div>
+
+                <form method="POST" action="password/notify/admin">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6 offset-md-4">
+                            <a href="/password/notify/admin" class="btn btn-primary">
+                                Pošalji zahtev adminu za promenu lozinke
+                            </a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

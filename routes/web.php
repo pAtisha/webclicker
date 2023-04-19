@@ -38,6 +38,9 @@ Route::get('/', function () {
 Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
 Route::get('callback/google', [GoogleController::class, 'callbackToGoogle']);
 
+//notify for password reset
+Route::post('password/notify/admin', [App\Http\Controllers\HomeController::class, 'notify_admin']);
+
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
 
