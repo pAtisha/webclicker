@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -64,6 +65,21 @@ class AdminController extends Controller
 
     public function update_user(Request $request, $id)
     {
+        if ($request->new_password) {
+            if($request->new_password === $request->password_confirmation)
+            {
+                if(strlen($request->new_password) >= 8) {
+                    $pw = Hash::make($request->new_password);
+                }
+                else
+                    return redirect()->back()->with('error', 'Molimo Vas da šifra sadrži minimum 8 karaktera.');
+            }
+            else
+                return redirect()->back()->with('error', 'Nova šifra i potvrdna šifra se ne poklapaju.');
+        }
+        else
+            return redirect()->back()->with('error', 'Morate uneti novu šifru.');
+
         User::updateOrCreate(
             [
                 'id' => $id
@@ -72,6 +88,7 @@ class AdminController extends Controller
                 'name' => $request->name,
                 'index_number' => $request->index_number,
                 'email' => $request->email,
+                'password' => $pw,
             ]
         );
 

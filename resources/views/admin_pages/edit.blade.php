@@ -23,6 +23,14 @@
                         <label for="coursePassword" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email">
                     </div>
+                    <div class="mb-3">
+                        <label for="new_password" class="form-label">Nova šifra</label>
+                        <input id="new_password" type="password" class="form-control" name="new_password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password-confirm" class="form-label">Potvrda nove šifre</label>
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
