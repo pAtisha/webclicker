@@ -70,6 +70,17 @@ class AdminController extends Controller
             {
                 if(strlen($request->new_password) >= 8) {
                     $pw = Hash::make($request->new_password);
+                    User::updateOrCreate(
+                        [
+                            'id' => $id
+                        ],
+                        [
+                            'name' => $request->name,
+                            'index_number' => $request->index_number,
+                            'email' => $request->email,
+                            'password' => $pw,
+                        ]
+                    );
                 }
                 else
                     return redirect()->back()->with('error', 'Molimo Vas da šifra sadrži minimum 8 karaktera.');
@@ -77,8 +88,6 @@ class AdminController extends Controller
             else
                 return redirect()->back()->with('error', 'Nova šifra i potvrdna šifra se ne poklapaju.');
         }
-        else
-            return redirect()->back()->with('error', 'Morate uneti novu šifru.');
 
         User::updateOrCreate(
             [
@@ -88,9 +97,9 @@ class AdminController extends Controller
                 'name' => $request->name,
                 'index_number' => $request->index_number,
                 'email' => $request->email,
-                'password' => $pw,
             ]
         );
+
 
         return redirect('/admin/users')->with('success', 'Uspešno ste ažurirali korisnika.');
     }
