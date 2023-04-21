@@ -27,9 +27,14 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function notify_admin(Request $request)
-    {
-
-    }
+//    public function show_password_reset()
+//    {
+//        return view('auth/admin_reset');
+//    }
+//
+//    public function notify_admin(Request $request)
+//    {
+//        dd($request->email);
+//    }
 
 }

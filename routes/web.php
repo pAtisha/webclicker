@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+//notify for password reset
+//Route::post('notify-admin/send', [App\Http\Controllers\HomeController::class, 'notify_admin'])->middleware('guest');
+//Route::get('notify-admin', [App\Http\Controllers\HomeController::class, 'show_password_reset'])->middleware('guest');
 
 Route::get('/', function () {
     if(Auth::check())
@@ -37,9 +39,6 @@ Route::get('/', function () {
 //Google
 Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
 Route::get('callback/google', [GoogleController::class, 'callbackToGoogle']);
-
-//notify for password reset
-Route::post('password/notify/admin', [App\Http\Controllers\HomeController::class, 'notify_admin']);
 
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
@@ -107,6 +106,9 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function (){
 
     //tests
     Route::get('/courses/{id}', [App\Http\Controllers\CourseController::class, 'show_tests']);
+
+    //answering test
+    Route::get('/test/create/{id}', [App\Http\Controllers\TestAnswerController::class, 'show_entire_test']);
 });
 
 

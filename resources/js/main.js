@@ -131,5 +131,16 @@ $(function(){
         $('#test_question_id_answer').val(id);
     });
 
+    //edit question container
+    $('[id*="question_id_"]').on('click', function (){
+       let clickedValue = $(this).attr('href');
+       clickedValue = clickedValue.substring(1);
+
+       $('#question_container' + clickedValue).addClass('red-border');
+
+       setTimeout(function (){
+           $('#question_container' + clickedValue).removeClass('red-border');
+       }, 2000);
+    });
 
 });

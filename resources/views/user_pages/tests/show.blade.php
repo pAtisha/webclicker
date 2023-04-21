@@ -46,12 +46,7 @@
                                     </div>
                                 </form>
                             @else
-                                <form action="{{ url('/student/courses/test/create') }}" method="POST">
-                                    @csrf
-                                    <div class="input-group mb-2">
-                                        <button class="btn btn-success @if($test->open == 0)disabled @endif" type="submit">Započni</button>
-                                    </div>
-                                </form>
+                                <a class="btn btn-success @if($test->open == 0)disabled @endif" href="/student/test/create/{{$test->id}}">Započni</a>
                             @endif
 
                         </td>
