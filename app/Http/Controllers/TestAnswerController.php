@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Test;
+use DateInterval;
 use Illuminate\Http\Request;
 
 class TestAnswerController extends Controller
@@ -14,13 +15,17 @@ class TestAnswerController extends Controller
     {
         $test = Test::find($id);
 
-        $questions = Question::where('test_id', '=', $id)->get();
+        $seconds = $test->time * 60;
+
+        $time = gmdate("i:s", $seconds);
+
+        $questions = Question::where('test_id', '=', $id)->where('active', '=' , 1)->get();
 
         $answersArray = array();
 
         foreach ($questions as $index => $question)
         {
-            $answers = Answer::where('question_id', '=', $question->id)->get()->toArray();
+            $answers = Answer::where('question_id', '=', $question->id)->where('active', '=', 1)->get()->toArray();
             $answersArray[$index] = $answers;
         }
 
@@ -29,6 +34,12 @@ class TestAnswerController extends Controller
             'test' => $test,
             'questions' => $questions,
             'answersArray' => $answersArray,
+            'time' => $time
         ]);
+    }
+
+    public function submit_answers(Request $request)
+    {
+dd('dsa');
     }
 }

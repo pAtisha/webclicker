@@ -109,6 +109,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function (){
 
     //answering test
     Route::get('/test/create/{id}', [App\Http\Controllers\TestAnswerController::class, 'show_entire_test']);
+    Route::post('/test/send', [App\Http\Controllers\TestAnswerController::class, 'submit_answers']);
 });
 
 
