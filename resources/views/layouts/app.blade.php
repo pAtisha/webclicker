@@ -26,6 +26,8 @@
     </main>
 
 </div>
+<div class="wrapper">
 @include('footer.footer')
+</div>
 </body>
 </html>
