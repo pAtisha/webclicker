@@ -136,6 +136,10 @@ $(function(){
        let clickedValue = $(this).attr('href');
        clickedValue = clickedValue.substring(1);
 
+        $('html,body').animate({
+                scrollTop: $("#question_container" + clickedValue).offset().top},
+            'normal');
+
        $('#question_container' + clickedValue).addClass('red-border');
 
        setTimeout(function (){

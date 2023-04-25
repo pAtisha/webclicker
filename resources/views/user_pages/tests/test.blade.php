@@ -14,6 +14,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-2">
+                            <div class="sticky-top">
                             <div class="card">
                                 <div class="card-header">
                                     Pitanja
@@ -25,8 +26,9 @@
                                 </ul>
                             </div>
                             <br>
-                            <div>
+                            <div class="sticky-top">
                                 <h4>Vreme: <span id="count">{{$time}}</span></h4>
+                            </div>
                             </div>
                         </div>
                         <div class="col-sm-10 test-container">
