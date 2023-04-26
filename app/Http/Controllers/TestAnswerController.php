@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Test;
-use DateInterval;
+use App\Models\Time;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TestAnswerController extends Controller
 {
@@ -27,6 +27,29 @@ class TestAnswerController extends Controller
         {
             $answers = Answer::where('question_id', '=', $question->id)->where('active', '=', 1)->get()->toArray();
             $answersArray[$index] = $answers;
+        }
+
+        //Store starting time to db
+        $result = Time::where('user_id', '=', Auth::id())->where('test_id', '=', $id)->get();
+        if(!$result->isEmpty())
+        {
+            $created_time = $result[0]->created_at->timestamp;
+            $current_time = date_create('now');
+            $current_time = $current_time->getTimestamp();
+            $time_to_sub = $created_time - $current_time;
+            $time = $seconds + $time_to_sub;
+            if($time <= 0)
+                return redirect()->back()->with('error', 'Test ne možete raditi sada. Započeli ste test: ' . $result[0]->created_at->toString());
+            $time = gmdate("i:s", $time);
+        }
+        else
+        {
+            $time_rec = new Time;
+
+            $time_rec->user_id = Auth::id();
+            $time_rec->test_id = $id;
+
+            $time_rec->save();
         }
 
         return view('user_pages.tests.test',

@@ -17,6 +17,8 @@
 
                 </nav>
 
+                @include('messages.errors')
+
 
                 <hr class="border border-dark border-2 opacity-50">
 
