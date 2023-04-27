@@ -25,7 +25,6 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Vreme</th>
                         <th scope="col" colspan="1">Akcija</th>
@@ -34,7 +33,6 @@
                     <tbody>
                     @foreach($tests as $test)
                         <tr>
-                        <td>{{$test->id}}</td>
                         <td>{{$test->name}}</td>
                         <td>{{$test->time}}</td>
                         <td>

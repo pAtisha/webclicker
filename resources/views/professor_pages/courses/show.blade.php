@@ -33,6 +33,7 @@
                         <th scope="col">Naziv</th>
                         <th scope="col">Šifra</th>
                         <th scope="col">Vidljivost Kursa</th>
+                        <th scope="col" colspan="3"></th>
                     </tr>
                     </thead>
                     <tbody>

@@ -195,7 +195,7 @@ class ProfessorController extends Controller
 
         $test->update();
 
-        return redirect()->back()->with('success','Aktivnost testa ' . $name . ' uspešno izmenjena.');
+        return redirect()->back()->with('success','Vidljivost testa ' . $name . ' uspešno izmenjena.');
     }
 
     public function open_test($id)
@@ -268,7 +268,7 @@ class ProfessorController extends Controller
 
         $question->update();
 
-        return redirect()->back()->with('success','Aktivnost pitanja uspešno izmenjena.');
+        return redirect()->back()->with('success','Vidljivost pitanja uspešno izmenjena.');
     }
 
     public function edit_question($id)
@@ -379,7 +379,7 @@ class ProfessorController extends Controller
 
         $answer->update();
 
-        return redirect()->back()->with('success','Aktivnost odgovora uspešno izmenjena.');
+        return redirect()->back()->with('success','Vidljivost odgovora uspešno izmenjena.');
     }
 
     public function delete_answer($id)

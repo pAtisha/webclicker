@@ -15,7 +15,6 @@
                         <li class="breadcrumb-item"><a href="/professor/home">Početna</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses">Kursevi</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Testovi</li>
-                        <li style="margin-left: 50px;"><h4 class="text-center fw-bold">{{$course->name}}</h4></li>
                     </ol>
                 </nav>
 
@@ -24,7 +23,7 @@
 
 
                 <hr class="border border-dark border-2 opacity-50">
-
+                <h4 class="text-center fw-bold">{{$course->name}}</h4>
                 <button class="btn btn-primary btn-create-test" value="{{$course->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addTestModal">Dodaj Test</button>
 
                 <table class="table table-striped">
@@ -35,6 +34,7 @@
                         <th scope="col">Vreme za test</th>
                         <th scope="col">Vidljivost testa</th>
                         <th scope="col">Otvoren test</th>
+                        <th scope="col" colspan="3"></th>
                     </tr>
                     </thead>
                     <tbody>
