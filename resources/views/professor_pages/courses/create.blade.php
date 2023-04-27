@@ -16,10 +16,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="coursePassword" class="form-label">Šifra</label>
-                        <input type="text" class="form-control" id="password" placeholder="Kurs ne mora sadržati šifru." name="password">
+                        <input type="password" class="form-control" id="password" placeholder="Kurs ne mora sadržati šifru." name="password">
                     </div>
                     <div class="mb-3">
-                        <label for="courseActive" class="form-label">Aktivan</label>
+                        <label for="courseActive" class="form-label">Vidljiv</label>
                         <input name="active" type="checkbox" aria-label="Checkbox for active course" checked>
                     </div>
                 </div>

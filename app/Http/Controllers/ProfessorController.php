@@ -75,7 +75,7 @@ class ProfessorController extends Controller
 
         $course->update();
 
-        return redirect('/professor/courses')->with('success','Aktivnost kursa ' . $name . ' uspešno izmenjena.');
+        return redirect('/professor/courses')->with('success','Vidljivost kursa ' . $name . ' uspešno izmenjena.');
     }
 
     public function delete_course($id)

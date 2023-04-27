@@ -11,9 +11,6 @@
             <div class="col-md-8">
 
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-
-                    <button class="btn btn-primary" style="float: right;" data-bs-toggle="modal" data-bs-target="#addCourseModal">Dodaj Kurs</button>
-
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/professor/home">Početna</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Kursevi</li>
@@ -27,28 +24,27 @@
 
                 <hr class="border border-dark border-2 opacity-50">
 
+                <button class="btn btn-primary" style="float: right;" data-bs-toggle="modal" data-bs-target="#addCourseModal">Dodaj Kurs</button>
+
+
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Šifra</th>
-                        <th scope="col" colspan="3">Akcija</th>
-                        <th scope="col">Aktivnost</th>
+                        <th scope="col">Vidljivost Kursa</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($courses as $course)
                         <tr>
-                            <td>{{$course->id}}</td>
                             <td>{{$course->name}}</td>
-                            <td>{{$course->password}}</td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-edit-course" data-bs-toggle="modal" data-bs-target="#editCourseModal" id="editCourseButton" value="{{$course->id}}">Izmeni</button>
-                            </td>
-                            <td><a href="{{url('/professor/courses', $course->id)}}" class="btn btn-primary">Testovi</a></td>
-                            <td>
-                                <button class="btn btn-danger btn-delete-course" data-bs-toggle="modal" data-bs-target="#deleteCourseModal" id="deleteCourseButton" value="{{$course->id}}">Obriši</button>
+                                @if($course->password)
+                                    <i class="bi bi-lock-fill bigger-icon"></i>
+                                @else
+                                    <i class="bi bi-unlock-fill bigger-icon"></i>
+                                @endif
                             </td>
                             <td>
                                 <form action="{{ url('/professor/courses/active',$course->id) }}" method="POST">
@@ -60,6 +56,13 @@
                                     </div>
 
                                 </form>
+                            </td>
+                            <td><a href="{{url('/professor/courses', $course->id)}}" class="btn btn-primary">Idi na testove</a></td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-edit-course" data-bs-toggle="modal" data-bs-target="#editCourseModal" id="editCourseButton" value="{{$course->id}}">Izmeni</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-delete-course" data-bs-toggle="modal" data-bs-target="#deleteCourseModal" id="deleteCourseButton" value="{{$course->id}}">Obriši</button>
                             </td>
                         </tr>
                     @endforeach
