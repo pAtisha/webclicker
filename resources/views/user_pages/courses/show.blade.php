@@ -22,20 +22,18 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Ime predmeta</th>
                         <th scope="col">Profesor</th>
                         <th scope="col">Status prijave</th>
-                        <th scope="col" colspan="3">Akcija</th>
+                        <th scope="col" colspan="2"></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($courses as $course)
                         <tr>
-                            <td>{{$course->id}}</td>
                             <td>{{$course->name}}</td>
                             <td>{{$course->professor_name}}</td>
-                            <td>@if($course->following == '')<p class="fw-bold">Niste prijavljeni</p> @else <p class="fw-bold">{{$course->following}}</p>@endif</td>
+                            <td>@if($course->following == '')<i class="bi bi-x-lg bigger-icon"></i> @else<i class="bi bi-check-lg bigger-icon"></i> @endif</td>
                             @if($course->following == '')
                             <td>
                             @if($course->password)

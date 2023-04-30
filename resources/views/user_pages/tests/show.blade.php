@@ -12,7 +12,6 @@
                         <li class="breadcrumb-item"><a href="/student/home">Početna</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/student/courses">Kursevi</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Testovi</li>
-                        <li style="margin-left: 50px;"><h4 class="text-center fw-bold">{{$course->name}}</h4></li>
                     </ol>
 
                 </nav>
@@ -21,12 +20,13 @@
 
 
                 <hr class="border border-dark border-2 opacity-50">
+                <h4 class="text-center fw-bold">{{$course->name}}</h4>
 
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">Naziv</th>
-                        <th scope="col">Vreme</th>
+                        <th scope="col">Vreme za test</th>
                         <th scope="col" colspan="1">Akcija</th>
                     </tr>
                     </thead>
@@ -34,13 +34,13 @@
                     @foreach($tests as $test)
                         <tr>
                         <td>{{$test->name}}</td>
-                        <td>{{$test->time}}</td>
+                        <td>{{$test->time}} minuta</td>
                         <td>
                             @if($test->password)
                                 <form action="{{ url('/student/courses/test/create') }}" method="POST">
                                     @csrf
                                     <div class="input-group mb-2">
-                                        <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
+                                        <input type="password" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
 
                                         <button class="btn btn-success @if($test->open == 0)disabled @endif" type="submit">Započni</button>
                                     </div>
