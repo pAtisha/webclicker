@@ -15,8 +15,11 @@
                         <textarea class="form-control" id="question" placeholder="Unesite pitanje..." name="question"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="testPassword" class="form-label">Poeni</label>
-                        <input type="text" class="form-control" id="points" placeholder="Unesite poene za tačan odgovor.." name="points">
+                        <label for="exampleFormControlInput1" class="form-label">Tip pitanja</label>
+                        <select class="form-select" aria-label="Default select example" name="type">
+                            <option value="single">Jedan izbor odgovora</option>
+                            <option value="multi">Višeizborni odgovori</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="courseActive" class="form-label">Aktivan</label>

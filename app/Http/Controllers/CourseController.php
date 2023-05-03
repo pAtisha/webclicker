@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Follow;
 use App\Models\Test;
+use App\Models\Time;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -112,8 +113,25 @@ class CourseController extends Controller
 
             $tests = Test::where('course_id', '=', $id)->where('active', '=', 1)->get();
 
+            $done_tests = Time::where('course_id', '=', $id)->where('user_id', '=', $user->id)->where('done', '=', 1)->get();
+
+            $history_tests = array();
+
+            foreach ($tests as $index => $test)
+            {
+                foreach ($done_tests as $done_test)
+                {
+                    if($test->id == $done_test->test_id)
+                    {
+                        $history_tests[] = $test;
+                        unset($tests[$index]);
+                    }
+                }
+            }
+
             return view('user_pages.tests.show', ['course' => $course,
-                'tests' => $tests]);
+                'tests' => $tests,
+                'history_tests' => $history_tests]);
         }
         else
             return redirect()->back()->with('error', 'Morate se prijaviti na kurs!');

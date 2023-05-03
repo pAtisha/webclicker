@@ -10,6 +10,7 @@
                 <h3 class="text-center">{{$test->name}}</h3>
                 <hr class="border border-dark border-2 opacity-50">
 
+                <input hidden="hidden" name="test_id" value="{{$test->id}}">
 
                 <div class="container">
                     <div class="row">
@@ -37,14 +38,25 @@
                                     <h3>{{$loop->iteration . '. ' .$question->question}}</h3>
                                     <hr>
                                     @php $answers = $answersArray[$loop->index]; $i = $loop->index @endphp
-                                    @foreach($answers as $answer)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="answer{{$i}}" id="{{$answer['answer']}}">
-                                        <label class="form-check-label" for="{{$answer['answer']}}">
-                                            {{$loop->iteration . '. ' .$answer['answer']}}
-                                        </label>
-                                    </div>
-                                    @endforeach
+                                    @if($question->type == "single")
+                                        @foreach($answers as $answer)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="answer_single{{$i}}" id="{{$answer['answer']}}" value="{{$answer['answer']}}">
+                                            <label class="form-check-label" for="{{$answer['answer']}}">
+                                                {{$loop->iteration . '. ' .$answer['answer']}}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    @else
+                                        @foreach($answers as $answer)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="answer_multi{{$i}}[]" id="{{$answer['answer']}}" value="{{$answer['answer']}}">
+                                                <label class="form-check-label" for="{{$answer['answer']}}">
+                                                    {{$loop->iteration . '. ' .$answer['answer']}}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             @endforeach
                         </div>

@@ -232,7 +232,7 @@ class ProfessorController extends Controller
     {
         $request->validate([
             'question' => 'required',
-            'points' => ['required', 'numeric', 'max:60', 'min:1'],
+            'type' => 'required'
         ]);
 
         $input = $request->all();
@@ -255,8 +255,6 @@ class ProfessorController extends Controller
 
         return back()
             ->with('success','Pitanje uspešno dodato.');
-
-
 
     }
 
@@ -286,7 +284,7 @@ class ProfessorController extends Controller
             ],
             [
                 'question' => $request->question,
-                'points' => $request->points,
+                'type' => $request->type,
             ]
         );
 

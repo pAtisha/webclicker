@@ -17,6 +17,7 @@
                 </nav>
 
                 @include('messages.errors')
+                @include('messages.success')
 
 
                 <hr class="border border-dark border-2 opacity-50">
@@ -51,6 +52,26 @@
 
                         </td>
                         </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
+{{--                <hr class="border border-dark border-2 opacity-50">--}}
+                <h4 class="text-center fw-bold"  style="margin-top: 80px;">Istorija Testova</h4>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Naziv</th>
+                        <th scope="col">Broj Osvojenih Poena</th>
+                        <th scope="col" colspan="1">Maksimum</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($history_tests as $history_test)
+                        <td>{{$history_test->name}}</td>
+                        <td></td>
+                        <td></td>
                     @endforeach
                     </tbody>
                 </table>

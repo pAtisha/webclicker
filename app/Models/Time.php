@@ -9,5 +9,5 @@ class Time extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'test_id'];
+    protected $fillable = ['user_id', 'test_id', 'done', 'course_id'];
 }

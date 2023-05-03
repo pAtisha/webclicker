@@ -16,8 +16,11 @@
                         <textarea class="form-control" id="question_edit" name="question"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="questionPoints" class="form-label">Poeni</label>
-                        <input type="text" class="form-control" id="points_edit" placeholder="Unesite poene za tačan odgovor.." name="points">
+                        <label for="exampleFormControlInput1" class="form-label">Tip pitanja</label>
+                        <select class="form-select" aria-label="Default select example" name="type" id="type_edit">
+                            <option value="single">Jedan izbor odgovora</option>
+                            <option value="multi">Višeizborni odgovori</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

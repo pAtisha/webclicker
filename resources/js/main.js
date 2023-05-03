@@ -46,7 +46,7 @@ $(function(){
         var id = $(this).val();
         $.get("/professor/courses/questions/test/edit" +'/' + id, function (data) {
             $('#question_edit').val(data.data.question);
-            $('#points_edit').val(data.data.points);
+            $('#type_edit').val(data.data.type);
 
         })
     });

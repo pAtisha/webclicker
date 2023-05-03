@@ -34,7 +34,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Pitanje</th>
-                        <th scope="col">Poeni</th>
+                        <th scope="col">Tip</th>
                         <th scope="col">Vidljivost pitanja</th>
                         <th scope="col" colspan="3"></th>
                     </tr>
@@ -43,13 +43,19 @@
                     @foreach($questions as $question)
                         <tr>
                             <td>{{$question->question}}</td>
-                            <td>{{$question->points}}</td>
+                            <td>
+                                @if($question->type == "multi")
+                                    <i class="bi bi-ui-checks" style="font-size: 25px;"></i>
+                                @else
+                                    <i class="bi bi-check-circle-fill bigger-icon"></i>
+                                @endif
+                            </td>
                             <td>
                                 <form action="{{ url('/professor/courses/active/questions/test/active',$question->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
 
-                                    <div class="form-check form-switch">
+                                    <div class="form-check form-switch" style="margin-left: 30px;">
                                         <input onchange="this.form.submit()" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($question->active)checked @endif>
                                     </div>
 
