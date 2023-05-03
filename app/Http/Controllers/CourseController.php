@@ -123,7 +123,10 @@ class CourseController extends Controller
                 {
                     if($test->id == $done_test->test_id)
                     {
-                        $history_tests[] = $test;
+                        $history_tests[] = [
+                          'name' => $test->name,
+                          'starting_time' => $done_test->created_at->ToString()
+                        ];
                         unset($tests[$index]);
                     }
                 }

@@ -63,14 +63,14 @@
                     <thead>
                     <tr>
                         <th scope="col">Naziv</th>
-                        <th scope="col">Broj Osvojenih Poena</th>
-                        <th scope="col" colspan="1">Maksimum</th>
+                        <th scope="col">Test pokrenut</th>
+                        <th scope="col">Broj osvojenih poena/Maksimalan broj mogućih poena</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($history_tests as $history_test)
-                        <td>{{$history_test->name}}</td>
-                        <td></td>
+                        <td>{{$history_test['name']}}</td>
+                        <td>{{$history_test['starting_time']}}</td>
                         <td></td>
                     @endforeach
                     </tbody>
