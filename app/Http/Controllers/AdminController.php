@@ -28,21 +28,27 @@ class AdminController extends Controller
 
     public function show_users()
     {
-        $users = DB::table('users')
+        $users_students = DB::table('users')
             ->where('role', '=', 0)
-            ->orWhere('role', '=', 1)
-            ->get();
+            ->paginate(10);
 
-        foreach ($users as $user)
+        $users_professors = DB::table('users')
+            ->where('role', '=', 1)
+            ->paginate(10);
+
+        foreach ($users_professors as $user)
         {
-            if($user->role == 0)
-                $user->role_text = 'Student';
-            else
                 $user->role_text = 'Profesor';
         }
 
+        foreach ($users_students as $user)
+        {
+            $user->role_text = 'Student';
+        }
 
-        return view('admin_pages.users', ['users' => $users]);
+
+        return view('admin_pages.users', ['users_professors' => $users_professors,
+            'users_students' => $users_students]);
     }
 
     public function delete_user($id)
@@ -122,4 +128,30 @@ class AdminController extends Controller
 
         return redirect('/admin/users')->with('success', 'Uspešno ste ažurirali korisnika.');
     }
+
+    public function getUsers(Request $request)
+    {
+        $users_students = DB::table('users')
+            ->where('role', '=', 0)
+            ->where('index_number', '=', $request->index_number)
+            ->paginate(10);
+
+        $users_professors = DB::table('users')
+            ->where('role', '=', 1)
+            ->paginate(10);
+
+        foreach ($users_professors as $user)
+        {
+            $user->role_text = 'Profesor';
+        }
+
+        foreach ($users_students as $user)
+        {
+            $user->role_text = 'Student';
+        }
+
+        return view('admin_pages.users', ['users_professors' => $users_professors,
+            'users_students' => $users_students]);
+    }
+
 }

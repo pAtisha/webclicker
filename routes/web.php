@@ -46,6 +46,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
     Route::get('/home', [App\Http\Controllers\AdminController::class, 'home']);
 
     Route::get('users', [App\Http\Controllers\AdminController::class, 'show_users']);
+    Route::post('/getUsers', [App\Http\Controllers\AdminController::class, 'getUsers'])->name('getUsers');
     Route::delete('/users/delete/{id}', [App\Http\Controllers\AdminController::class, 'delete_user']);
     Route::get('users/edit/{id}',[App\Http\Controllers\AdminController::class, 'edit_user']);
     Route::patch('users/update/{id}', [App\Http\Controllers\AdminController::class, 'update_user']);
@@ -55,6 +56,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function (){
 
 Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function (){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+
+    //profile
+    Route::get('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit']);
+    Route::post('/user/update/{id}', [App\Http\Controllers\UserController::class, 'update']);
 
     //courses
     Route::get('/courses', [App\Http\Controllers\ProfessorController::class, 'show_courses']);
