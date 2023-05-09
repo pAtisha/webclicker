@@ -125,7 +125,10 @@ class CourseController extends Controller
                     {
                         $history_tests[] = [
                           'name' => $test->name,
-                          'starting_time' => $done_test->created_at->ToString()
+                          'starting_time' => $done_test->created_at->format("d-m-Y H:i:s"),
+                          'finishing_time' => $done_test->updated_at->format("d-m-Y H:i:s"),
+                          'points' => $done_test->points,
+                          'max_points' => $test->max_points,
                         ];
                         unset($tests[$index]);
                     }
@@ -139,5 +142,6 @@ class CourseController extends Controller
         else
             return redirect()->back()->with('error', 'Morate se prijaviti na kurs!');
     }
+
 
 }

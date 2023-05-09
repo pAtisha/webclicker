@@ -142,6 +142,7 @@ class ProfessorController extends Controller
         $input['user_id'] = Auth::id();
         $input['course_id'] = $request->course_id;
         $input['open'] = 0;
+        $input['max_points'] = 0;
 
 
         Test::create($input);
@@ -345,6 +346,7 @@ class ProfessorController extends Controller
             'points' => ['required', 'numeric'],
         ]);
 
+
         $input = $request->all();
 
         if($request->has('active'))
@@ -362,6 +364,14 @@ class ProfessorController extends Controller
         $question = Question::find($request->question_id);
         $input['test_id'] = $question->test_id;
         $input['course_id'] = $question->course_id;
+
+        //change max_points
+        if($request->points > 0)
+        {
+            $test = Test::find($question->test_id);
+            $test->max_points += $request->points;
+            $test->save();
+        }
 
         Answer::create($input);
 
@@ -402,6 +412,16 @@ class ProfessorController extends Controller
             'answer' => 'required',
             'points' => ['required', 'numeric'],
         ]);
+
+        //change max_points
+        if($request->points > 0)
+        {
+            $answer = Answer::find($id);
+            $test = Test::find($answer->test_id);
+            $test->max_points -= $answer->points;
+            $test->max_points += $request->points;
+            $test->save();
+        }
 
         Answer::updateOrCreate(
             [

@@ -57,6 +57,7 @@ class TestAnswerController extends Controller
             $time_rec->user_id = Auth::id();
             $time_rec->test_id = $id;
             $time_rec->done = 0;
+            $time_rec->points = 0;
             $time_rec->course_id = $test->course_id;
 
             $time_rec->save();
@@ -94,7 +95,10 @@ class TestAnswerController extends Controller
             {
                 $answer_value = "answer_single" . $index;
                 $answer = $request->$answer_value;
-                $answer_db = Answer::where('test_id', '=', $test_id)->where('answer', '=', $answer)->get(['answer', 'points'])[0];
+                $answer_db = Answer::where('test_id', '=', $test_id)
+                    ->where('answer', '=', $answer)
+                    ->where('question_id', '=', $question->id)
+                    ->get(['answer', 'points'])[0];
 
                 //Add points
                 $points += $answer_db->points;
@@ -136,6 +140,10 @@ class TestAnswerController extends Controller
                 }
             }
         }
+
+        //store points in times table
+        $get_time[0]->points = $points;
+        $get_time[0]->save();
 
         return redirect('/student/courses/'.$course_id)->with('success', 'Test je uspešno završen!');
 
