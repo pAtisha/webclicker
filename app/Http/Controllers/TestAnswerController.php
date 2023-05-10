@@ -148,4 +148,15 @@ class TestAnswerController extends Controller
         return redirect('/student/courses/'.$course_id)->with('success', 'Test je uspešno završen!');
 
     }
+
+    public function show_entire_test_with_password(Request $request, $id)
+    {
+        $test = Test::find($id);
+
+        if($request->password == $test->password)
+            return redirect('student/test/create/'.$id);
+        else
+            return redirect()->back()->with('error', 'Pogrešna lozinka!');
+
+    }
 }
