@@ -72,9 +72,25 @@ $(function(){
                     id: 'course_selected'
                 }));
             });
-
-        })
+        });
     });
+
+    $('#course_old').on('change', function (e) {
+        let optionSelected = $("option:selected", this);
+        let valueSelected = this.value;
+
+        $.get("/professor/questions/get/" + valueSelected, function (data){
+            $.each(data.data, function (i, item){
+                $('#question_old').append($('<option>', {
+                    value: item.id,
+                    text : item.question,
+                    id: 'question_selected'
+                }));
+            });
+        });
+    });
+
+
 
     //edit buttons
 
@@ -141,10 +157,17 @@ $(function(){
         $('#test_question_id').val(id);
     });
 
+    $('.btn-create-existing-question').on('click', function(){
+        const id = $(this).val();
+        $('#test_existing_question_id').val(id);
+    });
+
     $('.btn-create-answer').on('click', function(){
         const id = $(this).val();
         $('#test_question_id_answer').val(id);
     });
+
+
 
     //edit question container
     $('[id*="question_id_"]').on('click', function (){
@@ -165,6 +188,11 @@ $(function(){
     let myModalEl = document.getElementById('addExistingQuestionModal');
     myModalEl.addEventListener('hidden.bs.modal', function (event) {
         let array = document.querySelectorAll('#course_selected');
+        $.each(array, function (i, item){
+            item.remove();
+        });
+
+        array = document.querySelectorAll('#question_selected');
         $.each(array, function (i, item){
             item.remove();
         });

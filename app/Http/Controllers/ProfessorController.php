@@ -451,4 +451,37 @@ class ProfessorController extends Controller
 
         return response()->json(['data' => $data]);
     }
+
+    public function get_questionsJSON($id)
+    {
+        $data = Question::where('course_id', '=', $id)->get();
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function create_existing_question(Request $request)
+    {
+        $test_id = $request->test_id;
+        $course_id_selected = $request->course_old;
+        $question_id = $request->question_old;
+
+        $question = Question::find($question_id);
+
+        $course_id = Test::find($test_id)->course_id;
+
+        Question::create(
+            [
+                'user_id' => Auth::id(),
+                'test_id' => $test_id,
+                'course_id' => $course_id,
+                'question' => $question->question,
+                'active' => $question->active,
+                'type' => $question->type
+            ]
+        );
+
+
+
+        dd($question);
+    }
 }

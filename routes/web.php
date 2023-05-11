@@ -72,6 +72,9 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     //courses JSON
     Route::get('/courses/get/all', [App\Http\Controllers\ProfessorController::class, 'get_coursesJSON']);
 
+    //questions JSON
+    Route::get('/questions/get/{id}', [App\Http\Controllers\ProfessorController::class, 'get_questionsJSON']);
+
     //tests
     Route::get('/courses/{id}', [App\Http\Controllers\ProfessorController::class, 'show_tests']);
     Route::post('/courses/create/test', [App\Http\Controllers\ProfessorController::class, 'create_test']);
@@ -81,6 +84,7 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     Route::put('/courses/active/test/{id}', [App\Http\Controllers\ProfessorController::class, 'active_test']);
     Route::put('/courses/open/test/{id}', [App\Http\Controllers\ProfessorController::class, 'open_test']);
 
+
     //questions
     Route::get('/courses/questions/test/{id}', [App\Http\Controllers\ProfessorController::class, 'show_questions']);
     Route::post('/courses/questions/test/create', [App\Http\Controllers\ProfessorController::class, 'create_question']);
@@ -88,6 +92,8 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     Route::get('/courses/questions/test/edit/{id}', [App\Http\Controllers\ProfessorController::class, 'edit_question']);
     Route::patch('/courses/questions/test/update/{id}', [App\Http\Controllers\ProfessorController::class, 'update_question']);
     Route::delete('/courses/question/delete/test/{id}', [App\Http\Controllers\ProfessorController::class, 'delete_question']);
+
+    Route::post('/courses/questions-existing/test/create', [App\Http\Controllers\ProfessorController::class, 'create_existing_question']);
 
     //answers
     Route::get('/courses/questions/test/answers/{id}', [App\Http\Controllers\ProfessorController::class, 'show_answers']);

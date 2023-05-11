@@ -13,13 +13,13 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Izaberite Kurs</label>
                         <select class="form-select" aria-label="Default select example" name="course_old" id="course_old">
-{{--                            <option value="single">Jedan izbor odgovora</option>--}}
+                            <option>Izaberite...</option>
 {{--                            <option value="multi">Višeizborni odgovori</option>--}}
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Izaberi Pitanje</label>
-                        <select class="form-select" aria-label="Default select example" name="type">
+                        <select class="form-select" aria-label="Default select example" name="question_old" id="question_old">
 {{--                            <option value="single">Jedan izbor odgovora</option>--}}
 {{--                            <option value="multi">Višeizborni odgovori</option>--}}
                         </select>
@@ -28,7 +28,7 @@
                         <label for="courseActive" class="form-label">Aktivan</label>
                         <input name="active" type="checkbox" aria-label="Checkbox for active course" checked>
                     </div>
-                    <input type="hidden" name="test_id" id="test_question_id">
+                    <input type="hidden" name="test_id" id="test_existing_question_id">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
