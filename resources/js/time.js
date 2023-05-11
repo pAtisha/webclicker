@@ -6,6 +6,8 @@ $(function() {
 
     function update() {
         let myTime = $worked.html();
+        if(!myTime)
+            return;
         let ss = myTime.split(":");
         let dt = new Date();
         dt.setHours(0);

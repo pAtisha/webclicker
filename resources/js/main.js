@@ -1,5 +1,5 @@
 import $ from "jquery";
-
+import * as bootstrap from 'bootstrap';
 $(function(){
     // Setup Token
 
@@ -57,6 +57,21 @@ $(function(){
         $.get("/professor/courses/questions/test/answers/edit" +'/' + id, function (data) {
             $('#answer_edit').val(data.data.answer);
             $('#points_edit').val(data.data.points);
+
+        })
+    });
+
+    //create new question with existing ones
+    $('body').on('click', '.btn-create-existing-question', function () {
+        var id = $(this).val();
+        $.get("/professor/courses/get/all", function (data) {
+            $.each(data.data, function (i, item){
+                $('#course_old').append($('<option>', {
+                    value: item.id,
+                    text : item.name,
+                    id: 'course_selected'
+                }));
+            });
 
         })
     });
@@ -147,6 +162,12 @@ $(function(){
        }, 2000);
     });
 
-
+    let myModalEl = document.getElementById('addExistingQuestionModal');
+    myModalEl.addEventListener('hidden.bs.modal', function (event) {
+        let array = document.querySelectorAll('#course_selected');
+        $.each(array, function (i, item){
+            item.remove();
+        });
+    })
 
 });

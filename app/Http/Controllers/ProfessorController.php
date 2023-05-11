@@ -394,6 +394,15 @@ class ProfessorController extends Controller
     {
         $answer = Answer::find($id);
 
+        if ($answer) {
+            $test = Test::find($answer->test_id);
+            if($answer->points > 0)
+            {
+                $test->max_points -= $answer->points;
+                $test->save();
+            }
+        }
+
         $answer->delete();
 
         return redirect()->back()->with('success', 'Odgovor uspešno obrisan.');
@@ -434,5 +443,12 @@ class ProfessorController extends Controller
         );
 
         return redirect()->back()->with('success', 'Uspešno ste ažurirali odgovor.');
+    }
+
+    public function get_coursesJSON()
+    {
+        $data = Course::all();
+
+        return response()->json(['data' => $data]);
     }
 }

@@ -5,6 +5,7 @@
     @include('professor_pages.questions.create')
     @include('professor_pages.questions.edit')
     @include('professor_pages.questions.delete')
+    @include('professor_pages.questions.create_old')
 
     <div class="container">
         <div class="row justify-content-center">
@@ -28,7 +29,8 @@
 
                 <hr class="border border-dark border-2 opacity-50">
                 <h4 class="text-center fw-bold">{{$test->name}}</h4>
-                <button class="btn btn-primary btn-create-question" value="{{$test->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addQuestionModal">Dodaj Pitanje</button>
+                <button class="btn btn-primary btn-create-question" value="{{$test->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addQuestionModal">Dodaj Novo Pitanje</button>
+                <button class="btn btn-info btn-create-existing-question" value="{{$test->id}}" style="float: right; margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#addExistingQuestionModal">Dodaj Staro Pitanje</button>
 
                 <table class="table table-striped">
                     <thead>
