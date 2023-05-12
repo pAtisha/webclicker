@@ -454,7 +454,11 @@ class ProfessorController extends Controller
 
     public function get_questionsJSON($id)
     {
-        $data = Question::where('course_id', '=', $id)->get();
+        $questions = Question::where('course_id', '=', $id)->get();
+
+        $data = $questions->unique('question');
+
+        $data->all();
 
         return response()->json(['data' => $data]);
     }
@@ -469,7 +473,7 @@ class ProfessorController extends Controller
 
         $course_id = Test::find($test_id)->course_id;
 
-        Question::create(
+        $new_question = Question::create(
             [
                 'user_id' => Auth::id(),
                 'test_id' => $test_id,
@@ -480,8 +484,20 @@ class ProfessorController extends Controller
             ]
         );
 
+        $answers = Answer::where('question_id', '=', $question_id)->get();
+        foreach ($answers as $answer)
+        {
+            Answer::create([
+                'question_id' => $new_question->id,
+                'test_id' => $test_id,
+                'course_id' => $course_id,
+                'user_id' => Auth::id(),
+                'answer' => $answer->answer,
+                'points' => $answer->points,
+                'active' => $answer->active,
+            ]);
+        }
 
-
-        dd($question);
+        return redirect()->back()->with('success', 'Uspešno ste kopirali pitanje!');
     }
 }

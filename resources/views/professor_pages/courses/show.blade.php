@@ -53,7 +53,7 @@
                                     @method('PUT')
 
                                     <div class="form-check form-switch">
-                                        <input onchange="this.form.submit()" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($course->active)checked @endif>
+                                        <input onchange="this.form.submit()" class="form-check-input" type="checkbox" @if($course->active)checked @endif>
                                     </div>
 
                                 </form>

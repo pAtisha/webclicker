@@ -79,6 +79,11 @@ $(function(){
         let optionSelected = $("option:selected", this);
         let valueSelected = this.value;
 
+        let array = document.querySelectorAll('#question_selected');
+        $.each(array, function (i, item){
+            item.remove();
+        });
+
         $.get("/professor/questions/get/" + valueSelected, function (data){
             $.each(data.data, function (i, item){
                 $('#question_old').append($('<option>', {
@@ -186,16 +191,18 @@ $(function(){
     });
 
     let myModalEl = document.getElementById('addExistingQuestionModal');
-    myModalEl.addEventListener('hidden.bs.modal', function (event) {
-        let array = document.querySelectorAll('#course_selected');
-        $.each(array, function (i, item){
-            item.remove();
-        });
+    if(myModalEl) {
+        myModalEl.addEventListener('hidden.bs.modal', function (event) {
+            let array = document.querySelectorAll('#course_selected');
+            $.each(array, function (i, item) {
+                item.remove();
+            });
 
-        array = document.querySelectorAll('#question_selected');
-        $.each(array, function (i, item){
-            item.remove();
-        });
-    })
+            array = document.querySelectorAll('#question_selected');
+            $.each(array, function (i, item) {
+                item.remove();
+            });
+        })
+    }
 
 });
