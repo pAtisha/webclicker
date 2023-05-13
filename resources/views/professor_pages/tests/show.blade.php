@@ -32,9 +32,10 @@
                         <th scope="col">Naziv</th>
                         <th scope="col">Šifra</th>
                         <th scope="col">Vreme za test</th>
+                        <th scope="col">Maks.</th>
                         <th scope="col">Vidljivost testa</th>
                         <th scope="col">Otvoren test</th>
-                        <th scope="col" colspan="3"></th>
+                        <th scope="col" colspan="4"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -49,6 +50,7 @@
                                 @endif
                             </td>
                             <td>{{$test->time}} minuta</td>
+                            <td>{{$test->max_points}} poena</td>
                             <td>
                                 <form action="{{ url('/professor/courses/active/test',$test->id) }}" method="POST">
                                     @csrf
@@ -73,6 +75,9 @@
                             </td>
                             <td>
                                 <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/'. $test->id)}}">Idi na pitanja</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/'. $test->id)}}">Rezultati <i class="bi bi-download"></i></a>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-edit-test" data-bs-toggle="modal" data-bs-target="#editTestModal" id="editTestButton" value="{{$test->id}}">Izmeni</button>
