@@ -77,7 +77,11 @@
                                 <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/'. $test->id)}}">Idi na pitanja</a>
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/'. $test->id)}}">Rezultati <i class="bi bi-download"></i></a>
+                                <form method="post" action="{{url('/professor/test/export')}}">
+                                    @csrf
+                                    <input hidden="hidden" name="test_id" value="{{$test->id}}">
+                                    <button class="btn btn-success">Rezultati <i class="bi bi-download"></i></button>
+                                </form>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-edit-test" data-bs-toggle="modal" data-bs-target="#editTestModal" id="editTestButton" value="{{$test->id}}">Izmeni</button>

@@ -102,6 +102,9 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     Route::delete('/courses/question/delete/test/answers/{id}', [App\Http\Controllers\ProfessorController::class, 'delete_answer']);
     Route::get('/courses/questions/test/answers/edit/{id}', [App\Http\Controllers\ProfessorController::class, 'edit_answer']);
     Route::patch('/courses/questions/test/answers/update/{id}', [App\Http\Controllers\ProfessorController::class, 'update_answer']);
+
+    //export
+    Route::post('/test/export', [App\Http\Controllers\ProfessorController::class, 'export_test']);
 });
 
 

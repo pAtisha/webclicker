@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TestExport;
 use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Course;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redis;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProfessorController extends Controller
 {
@@ -532,5 +534,13 @@ class ProfessorController extends Controller
         }
 
         return redirect()->back()->with('success', 'Uspešno ste kopirali pitanje!');
+    }
+
+    public function export_test(Request $request)
+    {
+        $test_id = $request->test_id;
+
+        $file_name = 'test_'.date('Y_m_d_H_i_s').'.csv';
+        return Excel::download(new TestExport($test_id), $file_name);
     }
 }
