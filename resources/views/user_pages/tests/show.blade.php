@@ -70,10 +70,12 @@
                     </thead>
                     <tbody>
                     @foreach($history_tests as $history_test)
+                        <tr>
                         <td>{{$history_test['name']}}</td>
                         <td>{{$history_test['starting_time']}}</td>
                         <td>{{$history_test['finishing_time']}}</td>
                         <td>{{$history_test['points']}} / {{$history_test['max_points']}}</td>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>

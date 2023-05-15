@@ -317,6 +317,17 @@ class ProfessorController extends Controller
     {
         $question = Question::find($id);
 
+        $answers = Answer::where('question_id', '=', $id)->get();
+
+        foreach ($answers as $answer) {
+            $test = Test::find($answer->test_id);
+            if($answer->points > 0)
+            {
+                $test->max_points -= $answer->points;
+                $test->save();
+            }
+        }
+
         $question->delete();
 
         return redirect()->back()->with('success', 'Pitanje uspešno obrisano.');
@@ -506,7 +517,9 @@ class ProfessorController extends Controller
 
         $question = Question::find($question_id);
 
-        $course_id = Test::find($test_id)->course_id;
+        $test = Test::find($test_id);
+
+        $course_id = $test->course_id;
 
         $new_question = Question::create(
             [
@@ -522,6 +535,13 @@ class ProfessorController extends Controller
         $answers = Answer::where('question_id', '=', $question_id)->get();
         foreach ($answers as $answer)
         {
+            if($answer->points > 0)
+            {
+                $test->max_points += $answer->points;
+                $test->save();
+            }
+
+
             Answer::create([
                 'question_id' => $new_question->id,
                 'test_id' => $test_id,
