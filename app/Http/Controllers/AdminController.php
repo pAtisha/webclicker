@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -71,6 +72,17 @@ class AdminController extends Controller
 
     public function update_user(Request $request, $id)
     {
+        $user = User::find($id);
+        if($user->role == 0 && $user->index_number != $request->index_number)
+        {
+            $validator =  Validator::make($request->all(), [
+                'index_number' => ['required', 'numeric', 'max:999999', 'min:9999', 'unique:users'],
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->with('error', 'Broj indeksa već postoji!');
+            }
+        }
         if ($request->new_password) {
             if($request->new_password === $request->password_confirmation)
             {
@@ -115,7 +127,10 @@ class AdminController extends Controller
         $user = User::find($id);
 
         if($user->role == 0)
+        {
             $user->role = 1;
+            $user->index_number = null;
+        }
         else
             $user->role = 0;
 

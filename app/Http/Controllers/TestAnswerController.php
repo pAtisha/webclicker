@@ -17,6 +17,9 @@ class TestAnswerController extends Controller
     {
         $test = Test::find($id);
 
+        if($test->open != 1)
+            return redirect()->back()->with('error', 'Profesor je zatvorio test!');
+
         $seconds = $test->time * 60;
 
         $time = gmdate("i:s", $seconds);

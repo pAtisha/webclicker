@@ -40,7 +40,7 @@
                                     <form action="{{ url('/student/courses/follow/create',$course->id) }}" method="POST">
                                         @csrf
                                         <div class="input-group mb-2">
-                                            <input type="text" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
+                                            <input type="password" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
 
                                             <button type="submit" class="btn btn-primary">Prijavi se</button>
                                         </div>

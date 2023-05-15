@@ -38,7 +38,7 @@
                         <td>{{$test->time}} minuta</td>
                         <td>
                             @if($test->password)
-                                <form action="{{ url('/student/test/create/password/'. $test->id) }}" method="POST">
+                                <form action="{{ url('/student/test/create/password/'. $test->id) }}" method="POST" onkeypress="return event.keyCode != 13;">
                                     @csrf
                                     <div class="input-group mb-2">
                                         <input type="password" id="input_password_course" class="form-control" placeholder="Unesite lozinku" aria-label="Unesite lozinku" aria-describedby="button-addon2" name="password">
