@@ -41,7 +41,7 @@
 {{--                                    @enderror--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
-
+                            @if($user->role == 0)
                             <div class="row mb-3">
                                 <label for="index_number" class="col-md-4 col-form-label text-md-end">Broj indeksa</label>
 
@@ -55,7 +55,7 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            @endif
                             @if(!$user->gauth_id)
 
                             <div class="row mb-3">

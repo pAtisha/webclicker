@@ -62,6 +62,11 @@ class CourseController extends Controller
     public function follow(Request $request, $id)
     {
         $user_id = Auth::id();
+
+        $user = User::find($user_id);
+        if($user->index_number == null)
+            return redirect('/student/user/edit/'.$user_id)->with('error', 'Molimo Vas unesite broj indeksa!');
+
         $course_id = (int)$id;
 
         $course = Course::find($id);

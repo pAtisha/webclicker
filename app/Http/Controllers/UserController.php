@@ -35,12 +35,25 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'index_number' => ['required', 'numeric', 'max:999999', 'min:9999'],
-        ]);
-
         $user = User::find($id);
+        if($request->index_number != null)
+        {
+            if($user->index_number != $request->index_number)
+            {
+                $request->validate([
+                    'name' => ['required', 'string', 'max:255'],
+                    'index_number' => ['required', 'numeric', 'max:999999', 'min:9999', 'unique:users'],
+                ]);
+            }
+            else
+            {
+                $request->validate([
+                    'name' => ['required', 'string', 'max:255'],
+                    'index_number' => ['required', 'numeric', 'max:999999', 'min:9999'],
+                ]);
+            }
+        }
+
         $currentPassword = $user->password;
 
         if($request->old_password) {
