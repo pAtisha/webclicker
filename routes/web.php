@@ -103,8 +103,11 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     Route::get('/courses/questions/test/answers/edit/{id}', [App\Http\Controllers\ProfessorController::class, 'edit_answer']);
     Route::patch('/courses/questions/test/answers/update/{id}', [App\Http\Controllers\ProfessorController::class, 'update_answer']);
 
-    //export
+    //export one test
     Route::post('/test/export', [App\Http\Controllers\ProfessorController::class, 'export_test']);
+
+    //export all tests in course
+    Route::post('/course/test/export', [App\Http\Controllers\ProfessorController::class, 'export_all_tests']);
 });
 
 

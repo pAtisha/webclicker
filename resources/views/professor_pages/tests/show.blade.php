@@ -94,6 +94,12 @@
                     </tbody>
                 </table>
 
+                <form method="post" action="{{url('/professor/course/test/export')}}">
+                    @csrf
+                    <input hidden="hidden" name="course_id" value="{{$course->id}}">
+                    <button class="btn btn-success">Rezultati svih testova <i class="bi bi-download"></i></button>
+                </form>
+
             </div>
         </div>
     </div>
