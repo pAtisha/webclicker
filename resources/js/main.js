@@ -63,7 +63,7 @@ $(function(){
 
     //create new question with existing ones
     $('body').on('click', '.btn-create-existing-question', function () {
-        var id = $(this).val();
+        var course_id = $(this).val();
         $.get("/professor/courses/get/all", function (data) {
             $.each(data.data, function (i, item){
                 $('#course_old').append($('<option>', {
@@ -72,6 +72,8 @@ $(function(){
                     id: 'course_selected'
                 }));
             });
+            $('#course_old').val(course_id);
+            $('#course_old').change();
         });
     });
 

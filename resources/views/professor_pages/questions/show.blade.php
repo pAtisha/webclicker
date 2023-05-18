@@ -30,7 +30,7 @@
                 <hr class="border border-dark border-2 opacity-50">
                 <h4 class="text-center fw-bold">{{$test->name}}</h4>
                 <button class="btn btn-primary btn-create-question" value="{{$test->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addQuestionModal">Dodaj Novo Pitanje</button>
-                <button class="btn btn-info btn-create-existing-question" value="{{$test->id}}" style="float: right; margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#addExistingQuestionModal">Dodaj Staro Pitanje</button>
+                <button class="btn btn-info btn-create-existing-question" value="{{$course_id}}" style="float: right; margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#addExistingQuestionModal">Dodaj Staro Pitanje</button>
 
                 <table class="table table-striped">
                     <thead>

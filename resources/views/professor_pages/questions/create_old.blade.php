@@ -2,7 +2,7 @@
     @csrf
     <!-- Modal -->
     <div class="modal fade" id="addExistingQuestionModal" tabindex="-1" aria-labelledby="addExistingQuestionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -13,8 +13,6 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Izaberite Kurs</label>
                         <select class="form-select" aria-label="Default select example" name="course_old" id="course_old">
-                            <option>Izaberite...</option>
-{{--                            <option value="multi">Višeizborni odgovori</option>--}}
                         </select>
                     </div>
                     <div class="mb-3">
