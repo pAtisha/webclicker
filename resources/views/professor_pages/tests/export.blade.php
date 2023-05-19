@@ -24,7 +24,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
-                    <button type="submit" class="btn btn-primary">Preuzmi</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Preuzmi</button>
                 </div>
             </div>
         </div>
