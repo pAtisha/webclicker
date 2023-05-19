@@ -7,52 +7,64 @@ use App\Models\Time;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use function Webmozart\Assert\Tests\StaticAnalysis\length;
 
 class TestsExport implements FromCollection, WithHeadings
 {
     private $course_id;
+    private $tests_ids;
+    private $tests_count;
 
-    public function __construct($course_id = 0)
+    public function __construct($course_id = 0, $tests_ids = 0)
     {
         $this->course_id = $course_id;
+        $this->tests_ids = $tests_ids;
+        $this->tests_count = count($tests_ids);
     }
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        $tests = Test::where('course_id', '=', $this->course_id)->get();
+        $finished_tests = array();
+        $users = array();
+        $final_result = array();
 
-        $result = array();
-
-        foreach ($tests as $test)
+        foreach ($this->tests_ids as $test_id)
         {
-            $times = Time::where('test_id', '=', $test->id)->get();
+            $finished_test = Time::where('test_id', '=', $test_id)->get();
+            $finished_tests[] = $finished_test;
+        }
 
-            foreach ($times as $time)
+        foreach ($finished_tests as $finished_test)
+        {
+            foreach ($finished_test as $test)
             {
-                $user = User::find($time->user_id);
-                $result[] = array(
-                    'name' => $user->name,
-                    'index_number' => $user->index_number,
-                    'test' => $test->name,
-                    'points' => $time->points,
-                    'max_points' => $test->max_points,
-                );
+                $users[] = User::find($test->user_id);
             }
         }
+
+        $users = array_unique($users);
+
+
 
         return collect($result);
     }
 
     public function headings() : array
     {
-        return [
+        $string_array[] = array();
+        $string_array = [
             'Ime',
             'Broj indeksa',
-            'Ime testa',
-            'Osvojeni poeni',
-            'Maksimalni mogući poeni'
         ];
+
+        for ($i = 0;$i < $this->tests_count; $i++)
+        {
+            $string_array[] = 'Ime testa';
+            $string_array[] = 'Broj osvojenih poena';
+            $string_array[] = 'Broj maksimalno mogućih poena';
+        }
+        return $string_array;
     }
 }

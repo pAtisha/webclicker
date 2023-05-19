@@ -5,6 +5,7 @@
     @include('professor_pages.tests.create')
     @include('professor_pages.tests.delete')
     @include('professor_pages.tests.edit')
+    @include('professor_pages.tests.export')
 
     <div class="container">
         <div class="row justify-content-center">
@@ -94,12 +95,7 @@
                     </tbody>
                 </table>
 
-                <form method="post" action="{{url('/professor/course/test/export')}}">
-                    @csrf
-                    <input hidden="hidden" name="course_id" value="{{$course->id}}">
-                    <button class="btn btn-success">Rezultati svih testova <i class="bi bi-download"></i></button>
-                </form>
-
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chooseTestsForResults" id="chooseTestsForResults">Rezultati više testova <i class="bi bi-download"></i></button>
             </div>
         </div>
     </div>

@@ -568,8 +568,9 @@ class ProfessorController extends Controller
     public function export_all_tests(Request $request)
     {
         $course_id = $request->course_id;
+        $test_ids = $request->test_id;
 
         $file_name = 'tests_'.date('Y_m_d_H_i_s').'.csv';
-        return Excel::download(new TestsExport($course_id), $file_name);
+        return Excel::download(new TestsExport($course_id, $test_ids), $file_name);
     }
 }
