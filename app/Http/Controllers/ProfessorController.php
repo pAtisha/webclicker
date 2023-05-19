@@ -512,7 +512,7 @@ class ProfessorController extends Controller
 
     public function create_existing_question(Request $request)
     {
-        $test_id = $request->test_id;
+        $test_id = $request->id_test;
         $course_id_selected = $request->course_old;
         $question_id = $request->question_old;
 

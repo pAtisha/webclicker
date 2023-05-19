@@ -7,7 +7,6 @@ use App\Models\Time;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use function Webmozart\Assert\Tests\StaticAnalysis\length;
 
 class TestsExport implements FromCollection, WithHeadings
 {
@@ -26,28 +25,41 @@ class TestsExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        $finished_tests = array();
+        $times = array();
         $users = array();
-        $final_result = array();
+        $res = array();
 
         foreach ($this->tests_ids as $test_id)
         {
-            $finished_test = Time::where('test_id', '=', $test_id)->get();
-            $finished_tests[] = $finished_test;
+            $time = Time::where('test_id', '=', $test_id)->get();
+            $times[] = $time;
         }
-
-        foreach ($finished_tests as $finished_test)
+        foreach ($times as $time)
         {
-            foreach ($finished_test as $test)
+            foreach ($time as $one_time)
             {
-                $users[] = User::find($test->user_id);
+                $user = User::find($one_time->user_id);
+                $users[] = $user;
+                $res[] = $one_time;
             }
         }
-
         $users = array_unique($users);
+        $res = array_unique($res);
 
+        foreach ($users as $index => $user)
+        {
+            $result[$index]['name'] = $user->name;
+            $result[$index]['index_number'] = $user->index_number;
 
-
+            foreach ($res as $index_time => $one_time) {
+                if ($one_time->user_id == $user->id) {
+                    $test = Test::find($one_time->test_id);
+                    $result[$index]['test' . $index_time] = $test->name;
+                    $result[$index]['points' . $index_time] = $one_time->points;
+                    $result[$index]['max_points' . $index_time] = $test->max_points;
+                }
+            }
+        }
         return collect($result);
     }
 
