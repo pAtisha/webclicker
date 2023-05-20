@@ -1,5 +1,3 @@
-import $ from "jquery";
-import * as bootstrap from 'bootstrap';
 $(function(){
     // Setup Token
 
@@ -98,8 +96,6 @@ $(function(){
             });
         });
     });
-
-
 
     //edit buttons
 

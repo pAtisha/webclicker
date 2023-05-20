@@ -39,9 +39,9 @@
                         <th scope="col" colspan="4"></th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="test_table">
                     @foreach($tests as $test)
-                        <tr draggable="true">
+                        <tr draggable="true" data-id="{{$test->id}}">
                             <td>{{$test->name}}</td>
                             <td>
                                 @if($test->password)

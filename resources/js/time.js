@@ -1,6 +1,3 @@
-import $ from "jquery";
-
-
 $(function() {
 
     let $worked = $("#count");

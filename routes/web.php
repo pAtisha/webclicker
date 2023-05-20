@@ -108,6 +108,10 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
 
     //export all tests in course
     Route::post('/course/test/export', [App\Http\Controllers\ProfessorController::class, 'export_all_tests']);
+
+    //drag and drop
+    Route::post('/update-positions/test', [App\Http\Controllers\ProfessorController::class, 'update_test_positions']);
+
 });
 
 

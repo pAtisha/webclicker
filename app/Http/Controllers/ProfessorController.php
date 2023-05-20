@@ -573,4 +573,17 @@ class ProfessorController extends Controller
         $file_name = 'tests_'.date('Y_m_d_H_i_s').'.csv';
         return Excel::download(new TestsExport($course_id, $test_ids), $file_name);
     }
+
+    public function update_positions_test(Request $request)
+    {
+        $positions = $request->input('positions');
+
+        foreach ($positions as $position) {
+            $record = Test::find($position['id']);
+            $record->position = $position['position'];
+            $record->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
 }
