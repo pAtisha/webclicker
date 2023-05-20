@@ -41,7 +41,7 @@
                     </thead>
                     <tbody>
                     @foreach($tests as $test)
-                        <tr>
+                        <tr draggable="true">
                             <td>{{$test->name}}</td>
                             <td>
                                 @if($test->password)

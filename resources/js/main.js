@@ -9,6 +9,8 @@ $(function(){
         }
     });
 
+
+
     //edit course form show data
     $('body').on('click', '#editCourseButton', function () {
         var id = $(this).val();

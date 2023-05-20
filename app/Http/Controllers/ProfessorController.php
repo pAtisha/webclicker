@@ -117,7 +117,7 @@ class ProfessorController extends Controller
     public function show_tests($id)
     {
         $course = Course::find($id);
-        $tests = Test::where('user_id', '=', Auth::id())->where('course_id', '=', $id)->get();
+        $tests = Test::where('user_id', '=', Auth::id())->where('course_id', '=', $id)->orderBy('position')->get();
 
         return view('professor_pages.tests.show', ['course' => $course,
         'tests' => $tests]);
