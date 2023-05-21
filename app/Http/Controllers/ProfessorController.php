@@ -225,7 +225,7 @@ class ProfessorController extends Controller
         $test = Test::find($id);
         $course_id = $test->course_id;
 
-        $questions = Question::where('test_id', '=', $id)->get();
+        $questions = Question::where('test_id', '=', $id)->orderBy('position')->get();
 
         return view('professor_pages.questions.show', ['test' => $test,
             'questions' => $questions,
@@ -255,6 +255,9 @@ class ProfessorController extends Controller
         $input['user_id'] = Auth::id();
         $input['test_id'] = $request->test_id;
         $input['course_id'] = Test::find($input['test_id'])->course_id;
+        $position = Question::where('course_id', '=', $request->course_id)
+            ->where('test_id', '=', $request->test_id)->max('position');
+        $input['position'] = $position + 1;
 
         Question::create($input);
 
@@ -530,7 +533,8 @@ class ProfessorController extends Controller
                 'course_id' => $course_id,
                 'question' => $question->question,
                 'active' => $question->active,
-                'type' => $question->type
+                'type' => $question->type,
+                'position' => 0,
             ]
         );
 
@@ -581,6 +585,19 @@ class ProfessorController extends Controller
 
         foreach ($positions as $position) {
             $record = Test::find($position['id']);
+            $record->position = $position['position'];
+            $record->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function update_question_positions(Request $request)
+    {
+        $positions = $request->input('positions');
+
+        foreach ($positions as $position) {
+            $record = Question::find($position['id']);
             $record->position = $position['position'];
             $record->save();
         }

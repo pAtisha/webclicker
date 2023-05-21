@@ -32,19 +32,28 @@
                 <button class="btn btn-primary btn-create-question" value="{{$test->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addQuestionModal">Dodaj Novo Pitanje</button>
                 <button class="btn btn-info btn-create-existing-question" value="{{$course_id}}" style="float: right; margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#addExistingQuestionModal">Dodaj Staro Pitanje</button>
 
-                <table class="table table-striped">
+                <table class="table table-striped sortable">
                     <thead>
                     <tr>
                         <th scope="col">Pitanje</th>
+                        <th scope="col">Prikaži odgovore</th>
                         <th scope="col">Tip</th>
                         <th scope="col">Vidljivost pitanja</th>
-                        <th scope="col" colspan="3"></th>
+                        <th scope="col" colspan="2"></th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="question_table">
                     @foreach($questions as $question)
-                        <tr>
+                        <tr data-id="{{ $question->id }}">
                             <td>{{$question->question}}</td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-chevron-down"></i></button>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                                    </div>
+                                </div>
+                            </td>
                             <td>
                                 @if($question->type == "multi")
                                     <i class="bi bi-ui-checks" style="font-size: 25px;"></i>
@@ -63,9 +72,9 @@
 
                                 </form>
                             </td>
-                            <td>
-                                <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/answers/'. $question->id)}}">Idi na odgovore</a>
-                            </td>
+{{--                            <td>--}}
+{{--                                <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/answers/'. $question->id)}}">Idi na odgovore</a>--}}
+{{--                            </td>--}}
                             <td>
                                 <button type="button" class="btn btn-warning btn-edit-question" data-bs-toggle="modal" data-bs-target="#editQuestionModal" id="editQuestionButton" value="{{$question->id}}">Izmeni</button>
                             </td>
