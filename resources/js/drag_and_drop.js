@@ -1,13 +1,21 @@
-import "jquery-ui";
+import "jquery-ui/dist/jquery-ui";
+import "jquery-ui/ui/data";
 import "jquery-ui/ui/widgets/mouse";
 import "jquery-ui/ui/widgets/sortable";
 
 $( document ).ready(function() {
-            $('tbody').sortable({
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+            $('#test_table').sortable({
                 axis: 'y', // Allow dragging vertically
                 update: function(event, ui) {
                     // Get the updated positions of the rows
-                    var positions = [];
+                    let positions = [];
                     $('tbody tr').each(function(index) {
                         positions.push({
                             id: $(this).attr('data-id'), // Assuming each row has a unique identifier stored in a 'data-id' attribute
@@ -17,17 +25,16 @@ $( document ).ready(function() {
 
                     // Send an AJAX request to update the positions in the database
                     $.ajax({
-                        url: '{{ url("professor/update-positions/test") }}', // Replace with the actual route that updates the positions
+                        url: 'update-positions/test', // Replace with the actual route that updates the positions
                         type: 'POST',
                         data: {
-                            _token: '{{ csrf_token() }}',
                             positions: positions
                         },
                         success: function(response) {
-                            console.log('uspesno');
+                            //console.log(response);
                         },
                         error: function(xhr) {
-                            console.log(xhr);
+                            //console.log(xhr);
                         }
                     });
                 }

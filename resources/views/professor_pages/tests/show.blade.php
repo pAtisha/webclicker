@@ -27,7 +27,7 @@
                 <h4 class="text-center fw-bold">{{$course->name}}</h4>
                 <button class="btn btn-primary btn-create-test" value="{{$course->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addTestModal">Dodaj Test</button>
 
-                <table class="table table-striped">
+                <table class="table table-striped sortable">
                     <thead>
                     <tr>
                         <th scope="col">Naziv</th>
@@ -39,9 +39,9 @@
                         <th scope="col" colspan="4"></th>
                     </tr>
                     </thead>
-                    <tbody id="test_table">
+                    <tbody id="test_table" >
                     @foreach($tests as $test)
-                        <tr draggable="true" data-id="{{$test->id}}">
+                        <tr data-id="{{ $test->id }}">
                             <td>{{$test->name}}</td>
                             <td>
                                 @if($test->password)

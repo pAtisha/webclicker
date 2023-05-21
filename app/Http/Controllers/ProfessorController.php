@@ -146,7 +146,8 @@ class ProfessorController extends Controller
         $input['course_id'] = $request->course_id;
         $input['open'] = 0;
         $input['max_points'] = 0;
-
+        $position = Test::where('course_id', '=', $request->course_id)->max('position');
+        $input['position'] = $position + 1;
 
         Test::create($input);
 
@@ -574,7 +575,7 @@ class ProfessorController extends Controller
         return Excel::download(new TestsExport($course_id, $test_ids), $file_name);
     }
 
-    public function update_positions_test(Request $request)
+    public function update_test_positions(Request $request)
     {
         $positions = $request->input('positions');
 
