@@ -227,6 +227,16 @@ class ProfessorController extends Controller
 
         $questions = Question::where('test_id', '=', $id)->orderBy('position')->get();
 
+        foreach ($questions as $question)
+        {
+            $answer = Answer::where('course_id', '=', $course_id)
+                ->where('test_id', '=', $id)
+                ->where('question_id', '=', $question->id)
+                ->get();
+
+            $question['answer'] = $answer;
+        }
+
         return view('professor_pages.questions.show', ['test' => $test,
             'questions' => $questions,
             'course_id' => $course_id]);

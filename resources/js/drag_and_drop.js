@@ -45,7 +45,7 @@ $( document ).ready(function() {
         update: function(event, ui) {
             // Get the updated positions of the rows
             let positions = [];
-            $('tbody tr').each(function(index) {
+            $('.tr-data-id').each(function(index) {
                 positions.push({
                     id: $(this).attr('data-id'), // Assuming each row has a unique identifier stored in a 'data-id' attribute
                     position: index + 1
@@ -60,7 +60,7 @@ $( document ).ready(function() {
                     positions: positions
                 },
                 success: function(response) {
-                    //console.log(response);
+                    location.reload();
                 },
                 error: function(xhr) {
                     //console.log(xhr);

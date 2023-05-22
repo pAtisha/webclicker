@@ -205,4 +205,17 @@ $(function(){
         })
     }
 
+    //collapsing answers
+    $('[class*="btn-toggle-up-down"]').on('click', function() {
+        let clickedValue = $(this).html();
+       if(clickedValue == "<i class=\"bi bi-chevron-down\"></i>")
+       {
+           $(this).html("<i class=\"bi bi-chevron-up\"></i>");
+       }
+       else
+       {
+           $(this).html("<i class=\"bi bi-chevron-down\"></i>");
+       }
+    });
+
 });

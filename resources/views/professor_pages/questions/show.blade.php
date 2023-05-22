@@ -6,6 +6,8 @@
     @include('professor_pages.questions.edit')
     @include('professor_pages.questions.delete')
     @include('professor_pages.questions.create_old')
+    @include('professor_pages.answers.delete')
+    @include('professor_pages.answers.edit')
 
     <div class="container">
         <div class="row justify-content-center">
@@ -44,15 +46,10 @@
                     </thead>
                     <tbody id="question_table">
                     @foreach($questions as $question)
-                        <tr data-id="{{ $question->id }}">
+                        <tr data-id="{{ $question->id }}" class="tr-data-id">
                             <td>{{$question->question}}</td>
                             <td>
-                                <button class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-chevron-down"></i></button>
-                                <div class="collapse" id="collapseExample">
-                                    <div class="card card-body">
-                                        Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                                    </div>
-                                </div>
+                                <button class="btn btn-primary btn-toggle-up-down{{$question->id}}" data-bs-toggle="collapse" href="#collapseAnswers{{$question->id}}" role="button" aria-expanded="false" aria-controls="collapseAnswers{{$question->id}}"><i class="bi bi-chevron-down"></i></button>
                             </td>
                             <td>
                                 @if($question->type == "multi")
@@ -80,6 +77,45 @@
                             </td>
                             <td>
                                 <button class="btn btn-danger btn-delete-question" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal" id="deleteQuestionButton" value="{{$question->id}}">Obriši</button>
+                            </td>
+                        </tr>
+                        <tr class="collapse" id="collapseAnswers{{$question->id}}">
+                            <td colspan="6">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Odgovor</th>
+                                        <th scope="col">Poeni</th>
+                                        <th scope="col">Vidljivost odgovora</th>
+                                        <th scope="col" colspan="2"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($question['answer'] as $answer)
+                                        <tr>
+                                            <td>{{$answer->answer}}</td>
+                                            <td>{{$answer->points}}</td>
+                                            <td>
+                                                <form action="{{ url('/professor/courses/active/questions/test/answers/active',$answer->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+
+                                                    <div class="form-check form-switch">
+                                                        <input onchange="this.form.submit()" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($answer->active)checked @endif>
+                                                    </div>
+
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-edit-answer" data-bs-toggle="modal" data-bs-target="#editAnswerModal" id="editAnswerButton" value="{{$answer->id}}">Izmeni</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger btn-delete-answer" data-bs-toggle="modal" data-bs-target="#deleteAnswerModal" id="deleteAnswerButton" value="{{$answer->id}}">Obriši</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </td>
                         </tr>
                     @endforeach
