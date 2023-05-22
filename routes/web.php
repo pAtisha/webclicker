@@ -112,6 +112,7 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     //drag and drop
     Route::post('courses/update-positions/test', [App\Http\Controllers\ProfessorController::class, 'update_test_positions']);
     Route::post('courses/update-positions/question', [App\Http\Controllers\ProfessorController::class, 'update_question_positions']);
+    Route::post('courses/update-positions/answer', [App\Http\Controllers\ProfessorController::class, 'update_answer_positions']);
 
 });
 

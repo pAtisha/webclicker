@@ -232,6 +232,7 @@ class ProfessorController extends Controller
             $answer = Answer::where('course_id', '=', $course_id)
                 ->where('test_id', '=', $id)
                 ->where('question_id', '=', $question->id)
+                ->orderBy('position')
                 ->get();
 
             $question['answer'] = $answer;
@@ -608,6 +609,19 @@ class ProfessorController extends Controller
 
         foreach ($positions as $position) {
             $record = Question::find($position['id']);
+            $record->position = $position['position'];
+            $record->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function update_answer_positions(Request $request)
+    {
+        $positions = $request->input('positions');
+
+        foreach ($positions as $position) {
+            $record = Answer::find($position['id']);
             $record->position = $position['position'];
             $record->save();
         }
