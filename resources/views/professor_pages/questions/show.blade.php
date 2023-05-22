@@ -45,7 +45,7 @@
                     </tr>
                     </thead>
                     <tbody id="question_table">
-                    @foreach($questions as $q_index => $question)
+                    @foreach($questions as $index => $question)
                         <tr data-id="{{ $question->id }}" class="tr-data-id">
                             <td>{{$question->question}}</td>
                             <td>
@@ -90,9 +90,9 @@
                                         <th scope="col" colspan="2"></th>
                                     </tr>
                                     </thead>
-                                    <tbody id="answer_table">
-                                    @foreach($question['answer'] as $index => $answer)
-                                        <tr data-id="{{ $answer->id }}" class="tr-data-id-answer-{{$index}}">
+                                    <tbody id="answer_table_{{$index}}">
+                                    @foreach($question['answer'] as $answer)
+                                        <tr data-id="{{ $answer->id }}" class="tr-data-id-answer">
                                             <td>{{$answer->answer}}</td>
                                             <td>{{$answer->points}}</td>
                                             <td>

@@ -34,3 +34,7 @@ body {
 .bigger-icon {
     font-size: 20px;
 }
+
+.sortable tr {
+    cursor: grab;
+}
