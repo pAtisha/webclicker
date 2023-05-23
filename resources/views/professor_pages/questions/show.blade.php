@@ -8,6 +8,7 @@
     @include('professor_pages.questions.create_old')
     @include('professor_pages.answers.delete')
     @include('professor_pages.answers.edit')
+    @include('professor_pages.answers.create')
 
     <div class="container">
         <div class="row justify-content-center">
@@ -81,6 +82,7 @@
                         </tr>
                         <tr class="collapse" id="collapseAnswers{{$question->id}}">
                             <td colspan="6">
+                                <button class="btn btn-primary btn-create-answer" value="{{$question->id}}" style="float: left;" data-bs-toggle="modal" data-bs-target="#addAnswerModal">Dodaj Odgovor</button>
                                 <table class="table">
                                     <thead>
                                     <tr>

@@ -81,18 +81,24 @@ $(function(){
         let optionSelected = $("option:selected", this);
         let valueSelected = this.value;
 
-        let array = document.querySelectorAll('#question_selected');
-        $.each(array, function (i, item){
-            item.remove();
-        });
-
         $.get("/professor/questions/get/" + valueSelected, function (data){
-            $.each(data.data, function (i, item){
-                $('#question_old').append($('<option>', {
-                    value: item.id,
-                    text : item.question,
-                    id: 'question_selected'
-                }));
+            // $.each(data.data, function (i, item){
+            //     $('#answers_existing_table tr:last').append($('<option>', {
+            //         value: item.id,
+            //         text : item.question,
+            //         id: 'question_selected'
+            //     }));
+            // });
+            $.each(data.data, function(i, item){
+               $('#show_questions_table tbody').append(
+                   "<tr>" +
+                        "<td>" + item.question +"</td>" +
+                   "<td><button class=\"btn btn-primary btn-toggle-up-down" + item.id + "\" data-bs-toggle=\"collapse\" href=\"#collapseAnswersCopy" + item.id + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseAnswersCopy" + item.id + "\"><i class=\"bi bi-chevron-down\"></i></button></td>" +
+                   "                                        <td>\n" +
+                   "                                            <input name=\"test_id[]\" type=\"checkbox\" aria-label=\"Checkbox for test\" value=\""+item.test_id+"\">\n" +
+                   "                                        </td>"
+                   +"</tr>"
+               )
             });
         });
     });
@@ -198,7 +204,7 @@ $(function(){
                 item.remove();
             });
 
-            array = document.querySelectorAll('#question_selected');
+            array = document.querySelectorAll('#show_questions_table tbody');
             $.each(array, function (i, item) {
                 item.remove();
             });

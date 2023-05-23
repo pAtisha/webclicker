@@ -412,6 +412,11 @@ class ProfessorController extends Controller
         $question = Question::find($request->question_id);
         $input['test_id'] = $question->test_id;
         $input['course_id'] = $question->course_id;
+        $position = Answer::where('course_id', '=', $request->course_id)
+            ->where('test_id', '=', $request->test_id)
+            ->where('question_id', '=', $request->question_id)
+            ->max('position');
+        $input['position'] = $position + 1;
 
         //change max_points
         if($request->points > 0)
