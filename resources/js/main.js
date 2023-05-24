@@ -73,10 +73,11 @@ $(function(){
                 }));
             });
             $('#course_old').val(course_id);
+            $('#course_old').change();
         });
     });
 
-    $('body').on('click', '.btn-create-existing-question',function (e) {
+    $('body').on('click', '#course_old',function (e) {
         let optionSelected = $("option:selected", this);
         let valueSelected = this.value;
 
