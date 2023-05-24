@@ -541,47 +541,49 @@ class ProfessorController extends Controller
 
     public function create_existing_question(Request $request)
     {
-        $test_id = $request->id_test;
-        $course_id_selected = $request->course_old;
-        $question_id = $request->question_old;
-
-        $question = Question::find($question_id);
-
-        $test = Test::find($test_id);
-
-        $course_id = $test->course_id;
-
-        $new_question = Question::create(
-            [
-                'user_id' => Auth::id(),
-                'test_id' => $test_id,
-                'course_id' => $course_id,
-                'question' => $question->question,
-                'active' => $question->active,
-                'type' => $question->type,
-                'position' => 0,
-            ]
-        );
-
-        $answers = Answer::where('question_id', '=', $question_id)->get();
-        foreach ($answers as $answer)
+        foreach($request->question_id as $question_id)
         {
-            if($answer->points > 0)
+            $test_id = $request->id_test;
+
+            $question = Question::find($question_id);
+
+            $test = Test::find($test_id);
+
+            $course_id = $test->course_id;
+
+            $new_question = Question::create(
+                [
+                    'user_id' => Auth::id(),
+                    'test_id' => $test_id,
+                    'course_id' => $course_id,
+                    'question' => $question->question,
+                    'active' => $question->active,
+                    'type' => $question->type,
+                    'position' => $question->position,
+                ]
+            );
+
+            $answers = Answer::where('question_id', '=', $question_id)->get();
+            foreach ($answers as $answer)
             {
-                $test->max_points += $answer->points;
-                $test->save();
+                if($answer->points > 0)
+                {
+                    $test->max_points += $answer->points;
+                    $test->save();
+                }
+
+
+                Answer::create([
+                    'question_id' => $new_question->id,
+                    'test_id' => $test_id,
+                    'course_id' => $course_id,
+                    'user_id' => Auth::id(),
+                    'answer' => $answer->answer,
+                    'points' => $answer->points,
+                    'active' => $answer->active,
+                    'position' => $answer->position,
+                ]);
             }
-
-
-            Answer::create([
-                'question_id' => $new_question->id,
-                'test_id' => $test_id,
-                'course_id' => $course_id,
-                'user_id' => Auth::id(),
-                'answer' => $answer->answer,
-                'points' => $answer->points,
-                'active' => $answer->active,
-            ]);
         }
 
         return redirect()->back()->with('success', 'Uspešno ste kopirali pitanje!');

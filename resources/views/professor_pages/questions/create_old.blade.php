@@ -63,12 +63,11 @@
                             </table>
                         </form>
                     </div>
-                    <input type="hidden" name="test_id" id="test_existing_question_id">
                     <input type="hidden" name="id_test" value="{{$test->id}}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
-                    <button type="submit" class="btn btn-primary">Ažuriraj</button>
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
                 </div>
             </div>
         </div>

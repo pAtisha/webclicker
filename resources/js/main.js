@@ -77,7 +77,7 @@ $(function(){
         });
     });
 
-    $('body').on('click', '#course_old',function (e) {
+    $('body').on('change', '#course_old',function (e) {
         let optionSelected = $("option:selected", this);
         let valueSelected = this.value;
 
@@ -89,7 +89,7 @@ $(function(){
                    "<td>" + item.question +"</td>" +
                    "<td><button value=\""+item.id+"\" type=\"button\" class=\"btn btn-primary btn-toggle-up-down btn-toggle-up-down-copy\" data-bs-toggle=\"collapse\" href=\"#collapseAnswersCopy" + item.id + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseAnswersCopy" + item.id + "\"><i class=\"bi bi-chevron-down\"></i></button></td>" +
                    "                                        <td>\n" +
-                   "                                            <input name=\"test_id[]\" type=\"checkbox\" aria-label=\"Checkbox for test\" value=\""+item.test_id+"\">\n" +
+                   "                                            <input name=\"question_id[]\" type=\"checkbox\" aria-label=\"Checkbox for test\" value=\""+item.id+"\">\n" +
                    "                                        </td>"
                    +"</tr>" +
                    "                                    <tr class=\"collapse\" id=\"collapseAnswersCopy"+item.id+"\">\n" +
