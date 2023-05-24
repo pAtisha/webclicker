@@ -73,7 +73,7 @@ $(function(){
                 }));
             });
             $('#course_old').val(course_id);
-            $('#course_old').change();
+            $('#course_old').trigger('change');
         });
     });
 
@@ -215,7 +215,7 @@ $(function(){
                 item.remove();
             });
 
-            array = document.querySelectorAll('#show_questions_table tbody');
+            array = document.querySelectorAll('#show_questions_table tbody tr');
             $.each(array, function (i, item) {
                 item.remove();
             });
