@@ -530,6 +530,15 @@ class ProfessorController extends Controller
         return response()->json(['data' => $data]);
     }
 
+    public function get_answersJSON($id)
+    {
+        $answers = Answer::where('question_id', '=', $id)->orderBy('position')->get();
+
+        $answers->all();
+
+        return response()->json(['answers' => $answers]);
+    }
+
     public function create_existing_question(Request $request)
     {
         $test_id = $request->id_test;

@@ -63,10 +63,6 @@
                             </table>
                         </form>
                     </div>
-                    <div class="mb-3">
-                        <label for="courseActive" class="form-label">Aktivan</label>
-                        <input name="active" type="checkbox" aria-label="Checkbox for active course" checked>
-                    </div>
                     <input type="hidden" name="test_id" id="test_existing_question_id">
                     <input type="hidden" name="id_test" value="{{$test->id}}">
                 </div>

@@ -73,34 +73,44 @@ $(function(){
                 }));
             });
             $('#course_old').val(course_id);
-            $('#course_old').change();
         });
     });
 
-    $('#course_old').on('change', function (e) {
+    $('body').on('click', '.btn-create-existing-question',function (e) {
         let optionSelected = $("option:selected", this);
         let valueSelected = this.value;
 
+        let html_append = "";
+
         $.get("/professor/questions/get/" + valueSelected, function (data){
-            // $.each(data.data, function (i, item){
-            //     $('#answers_existing_table tr:last').append($('<option>', {
-            //         value: item.id,
-            //         text : item.question,
-            //         id: 'question_selected'
-            //     }));
-            // });
             $.each(data.data, function(i, item){
-               $('#show_questions_table tbody').append(
-                   "<tr>" +
-                        "<td>" + item.question +"</td>" +
-                   "<td><button class=\"btn btn-primary btn-toggle-up-down" + item.id + "\" data-bs-toggle=\"collapse\" href=\"#collapseAnswersCopy" + item.id + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseAnswersCopy" + item.id + "\"><i class=\"bi bi-chevron-down\"></i></button></td>" +
+                html_append +=                    "<tr>" +
+                   "<td>" + item.question +"</td>" +
+                   "<td><button value=\""+item.id+"\" type=\"button\" class=\"btn btn-primary btn-toggle-up-down btn-toggle-up-down-copy\" data-bs-toggle=\"collapse\" href=\"#collapseAnswersCopy" + item.id + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseAnswersCopy" + item.id + "\"><i class=\"bi bi-chevron-down\"></i></button></td>" +
                    "                                        <td>\n" +
                    "                                            <input name=\"test_id[]\" type=\"checkbox\" aria-label=\"Checkbox for test\" value=\""+item.test_id+"\">\n" +
                    "                                        </td>"
-                   +"</tr>"
-               )
-            });
-        });
+                   +"</tr>" +
+                   "                                    <tr class=\"collapse\" id=\"collapseAnswersCopy"+item.id+"\">\n" +
+                   "                                        <td colspan=\"2\">\n" +
+                   "                                            <table class=\"table\">\n" +
+                   "                                                <thead>\n" +
+                   "                                                <tr>\n" +
+                   "                                                    <th scope=\"col\">Odgovor</th>\n" +
+                   "                                                    <th scope=\"col\">Poeni</th>\n" +
+                   "                                                </tr>\n" +
+                   "                                                </thead>\n" +
+                   "                                                <tbody id=\"answers_tbody"+item.id+"\">\n";
+                    html_append +=                                      "</tbody>\n" +
+                        "                                            </table>\n" +
+                        "                                        </td>\n" +
+                        "                                    </tr>";
+                })
+
+        })
+            .done(function (){
+                $('#show_questions_table tbody').append(html_append);
+            })
     });
 
     //edit buttons
@@ -223,5 +233,36 @@ $(function(){
            $(this).html("<i class=\"bi bi-chevron-down\"></i>");
        }
     });
+
+    $('#show_questions_table').on('click', '.btn-toggle-up-down-copy',function (){
+        let id = $(this).val();
+        $.get("/professor/answers/get/" + id, function (answers){
+            $.each(answers, function(i, answer){
+                $.each(answer, function(key, val)
+                {
+                    $('#answers_tbody' + id).append("                                                    <tr>\n" +
+                        "                                                        <td>"+val.answer+"</td>\n" +
+                        "                                                        <td>"+val.points+"</td>\n" +
+                        "                                                    </tr>\n");
+                });
+            });
+        });
+    });
+
+    //collapsing answers
+    $('#show_questions_table').on('click', '.btn-toggle-up-down-copy', function() {
+        let clickedValue = $(this).html();
+        let id = $(this).val();
+        $('#answers_tbody' + id).empty();
+        if(clickedValue == "<i class=\"bi bi-chevron-down\"></i>")
+        {
+            $(this).html("<i class=\"bi bi-chevron-up\"></i>");
+        }
+        else
+        {
+            $(this).html("<i class=\"bi bi-chevron-down\"></i>");
+        }
+    });
+
 
 });
