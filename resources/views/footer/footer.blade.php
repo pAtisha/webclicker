@@ -1,6 +1,6 @@
 
     <footer class="footer">
         <div class="container text-center">
-            <span class="text-muted">Copyright © {{ date('Y') }} WebClicker, Elektronski fakultet, Niš</span>
+            <span class="text-dark">Copyright © {{ date('Y') }} WebClicker, Elektronski fakultet, Niš</span>
         </div>
     </footer>

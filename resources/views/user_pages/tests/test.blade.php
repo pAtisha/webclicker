@@ -1,14 +1,14 @@
 @extends('layouts.app')
-
+<section>
 @section('content')
 
-    <div class="container">
+    <div class="container form-floating">
         <form action="/student/test/send" method="POST" id="submit_test">
             @csrf
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h3 class="text-center">{{$test->name}}</h3>
-                <hr class="border border-dark border-2 opacity-50">
+                <h3 class="text-center text-white">{{$test->name}}</h3>
+                <hr class="border border-white border-1 opacity-100">
 
                 <input hidden="hidden" name="test_id" value="{{$test->id}}">
 
@@ -17,18 +17,18 @@
                         <div class="col-sm-2">
                             <div class="sticky-top">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header bg-yellow">
                                     Pitanja
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     @foreach($questions as $question)
-                                        <a href="#{{$loop->iteration}}" id="question_id_{{$loop->iteration}}" class="list-group-item list-group-item-action">Pitanje broj {{$loop->iteration}}</a>
+                                        <a href="#{{$loop->iteration}}" id="question_id_{{$loop->iteration}}" class="list-group-item list-group-item-action bg-yellow">Pitanje broj {{$loop->iteration}}</a>
                                     @endforeach
                                 </ul>
                             </div>
                             <br>
-                            <div class="sticky-top">
-                                <h4>Vreme: <span id="count">{{$time}}</span></h4>
+                            <div class="sticky-top border border-danger border-2">
+                                <h4 class="text-white text-center pt-2"><i class="bi bi-stopwatch-fill"></i>  <span id="count">{{$time}}</span></h4>
                             </div>
                             </div>
                         </div>
@@ -72,6 +72,11 @@
     </div>
 
 @endsection
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+    <div class="wave wave4"></div>
+</section>
 
 
 
