@@ -84,6 +84,6 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        return redirect($request->route()->getPrefix().'/home')->with('status','Profil je uspešno izmenjen');
+        return redirect($request->route()->getPrefix().'/courses')->with('success','Profil je uspešno izmenjen');
     }
 }

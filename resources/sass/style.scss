@@ -53,7 +53,7 @@ section {
     left: 0;
     width: 100%;
     height: 10vh;
-    background: url(https://i.imgur.com/DLD3N2t.png);
+    background: url("../../public/images/wave.png");
     background-size: 100vw 10vh;
 }
 .wave1 {
@@ -101,7 +101,14 @@ section {
     }
 }
 
-#floatingInput, #floatingPassword{
+#floatingInput, #floatingPassword, .white-border-down{
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: white;
+    border-radius: 0;
+}
+
+.white-border-down:focus {
     outline: 0;
     border-width: 0 0 2px;
     border-color: white;
@@ -127,4 +134,19 @@ section {
 
 .bg-yellow {
     background-color: #fff685;
+}
+
+.navbar-toggler-icon {
+    filter: grayscale(1) invert(1);
+}
+
+.table-bg
+{
+    background-color: #E12b38;
+}
+
+.btn-danger-hover:hover
+{
+    background-color: white;
+    color: red;
 }

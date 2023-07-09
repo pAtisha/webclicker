@@ -1,19 +1,19 @@
 @extends('layouts.app')
-
+<section>
 @section('content')
 
     @include('professor_pages.courses.create')
     @include('professor_pages.courses.delete')
     @include('professor_pages.courses.edit')
 
-    <div class="container">
+    <div class="container form-floating">
         <div class="row justify-content-center">
             <div class="col-md-8">
 
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/professor/home">Početna</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Kursevi</li>
+                        <li class="breadcrumb-item"><a href="/professor/home" class="text-white">Početna</a></li>
+                        <li class="breadcrumb-item active text-white-50" aria-current="page">Kursevi</li>
                     </ol>
                 </nav>
 
@@ -22,12 +22,12 @@
 
 
 
-                <hr class="border border-dark border-2 opacity-50">
+                <hr class="border border-white border-1 opacity-100">
 
-                <button class="btn btn-primary" style="float: right;" data-bs-toggle="modal" data-bs-target="#addCourseModal">Dodaj Kurs</button>
+                <button class="btn btn-outline-light btn-white-blue" style="float: right;" data-bs-toggle="modal" data-bs-target="#addCourseModal">Dodaj Kurs</button>
 
 
-                <table class="table table-striped">
+                <table class="table text-white">
                     <thead>
                     <tr>
                         <th scope="col">Naziv</th>
@@ -58,7 +58,7 @@
 
                                 </form>
                             </td>
-                            <td><a href="{{url('/professor/courses', $course->id)}}" class="btn btn-primary">Idi na testove</a></td>
+                            <td><a href="{{url('/professor/courses', $course->id)}}" class="btn btn-outline-light btn-white-blue">Idi na testove</a></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-edit-course" data-bs-toggle="modal" data-bs-target="#editCourseModal" id="editCourseButton" value="{{$course->id}}">Izmeni</button>
                             </td>
@@ -75,4 +75,8 @@
     </div>
 
 @endsection
-
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+    <div class="wave wave4"></div>
+</section>

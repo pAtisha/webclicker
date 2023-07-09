@@ -12,7 +12,7 @@
                 <form class="p-4 p-md-5 rounded-3" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control shadow-none bg-transparent text-white @error('email') is-invalid @enderror" id="floatingInput" name="email" value="{{ old('email') }}" placeholder="name@example.com" required autocomplete="email">
+                        <input type="email" class="form-control shadow-none bg-transparent text-white white-border-down @error('email') is-invalid @enderror" id="floatingInput" name="email" value="{{ old('email') }}" placeholder="name@example.com" required autocomplete="email">
                         <label for="floatingInput" class="text-white">Email adresa</label>
 
                         @error('email')

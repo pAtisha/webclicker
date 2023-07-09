@@ -5,15 +5,22 @@ import "jquery-ui/ui/widgets/sortable";
 
 $( document ).ready(function() {
 
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
+
+
+
     //sort tests
     $('#test_table').sortable({
         axis: 'y', // Allow dragging vertically
+        revert: true,
+        cursor: 'move',
+        tolerance: "pointer",
         update: function(event, ui) {
             // Get the updated positions of the rows
             let positions = [];
@@ -44,6 +51,19 @@ $( document ).ready(function() {
     //sort questions with RELOAD
     $('#question_table').sortable({
         axis: 'y', // Allow dragging vertically
+        revert: true,
+        cursor: 'move',
+        tolerance: "pointer",
+        start: function (event, ui)
+        {
+            const boxes = document.querySelectorAll('.tr-delete-this');
+
+            boxes.forEach(box => {
+                box.remove();
+            });
+
+            $("#question_table").sortable("refresh");
+        },
         update: function(event, ui) {
             // Get the updated positions of the rows
             let positions = [];
@@ -72,39 +92,15 @@ $( document ).ready(function() {
     });
 
 
-    // let questions = [];
-    // let positions = [];
-    // $('.tr-data-id').each(function (index){
-    //     $('.tr-data-id-answer-' + index).each(function (index){
-    //         positions.push({
-    //             id: $(this).attr('data-id'), // Assuming each row has a unique identifier stored in a 'data-id' attribute
-    //             position: index + 1
-    //         });
-    //     })
-    //     questions[index] = positions;
-    //     console.log(questions[index]);
-    // });
-
-    // let positions = [];
-    // let questions = [];
-    // $('.tr-data-id').each(function (indexQuestion){
-    //     $('.tr-data-id-answer-' + indexQuestion).each(function (indexAnswer){
-    //         positions.push([{
-    //               id: $(this).attr('data-id'),
-    //               position: indexAnswer + 1
-    //         }]);
-    //     });
-    //     questions.push(positions);
-    //     positions = [];
-    // });
-    // console.log(questions);
-
 
     //sort answers
     $('[id*="answer_table_"]').each(function (index){
 
         $(this).sortable({
             axis: 'y', // Allow dragging vertically
+            revert: true,
+            cursor: 'move',
+            tolerance: "pointer",
             update: function(event, ui) {
                 // Get the updated positions of the rows
                 let positions = [];

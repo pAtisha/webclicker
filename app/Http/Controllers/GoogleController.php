@@ -8,13 +8,15 @@ class GoogleController extends Controller
 {
     public function signInwithGoogle()
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->stateless()
+        ->
+        redirect();
     }
     public function callbackToGoogle()
     {
         try {
 
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->stateless()->user();
 
             $finduser = User::where('gauth_id', $user->id)->first();
 
@@ -22,7 +24,7 @@ class GoogleController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect('/');
+                return redirect('/student/courses');
 
             }else{
                 $newUser = User::create([

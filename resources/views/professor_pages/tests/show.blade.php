@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<section>
 @section('content')
 
     @include('professor_pages.tests.create')
@@ -7,15 +7,15 @@
     @include('professor_pages.tests.edit')
     @include('professor_pages.tests.export')
 
-    <div class="container">
+    <div class="container form-floating">
         <div class="row justify-content-center">
             <div class="col-md-8">
 
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/professor/home">Početna</a></li>
-                        <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses">Kursevi</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Testovi</li>
+                        <li class="breadcrumb-item"><a href="/professor/home" class="text-white">Početna</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses" class="text-white">Kursevi</a></li>
+                        <li class="breadcrumb-item active text-white-50" aria-current="page">Testovi</li>
                     </ol>
                 </nav>
 
@@ -23,11 +23,11 @@
                 @include('messages.success')
 
 
-                <hr class="border border-dark border-2 opacity-50">
-                <h4 class="text-center fw-bold">{{$course->name}}</h4>
-                <button class="btn btn-primary btn-create-test" value="{{$course->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addTestModal">Dodaj Test</button>
+                <hr class="border border-white border-1 opacity-100">
+                <h4 class="text-center fw-bold text-white">{{$course->name}}</h4>
+                <button class="btn btn-outline-light btn-white-blue btn-create-test" value="{{$course->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addTestModal">Dodaj Test</button>
 
-                <table class="table table-striped sortable">
+                <table class="table text-white sortable">
                     <thead>
                     <tr>
                         <th scope="col">Naziv</th>
@@ -75,7 +75,7 @@
                                 </form>
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/'. $test->id)}}">Idi na pitanja</a>
+                                <a class="btn btn-outline-light btn-white-blue" href="{{url('/professor/courses/questions/test/'. $test->id)}}">Idi na pitanja</a>
                             </td>
                             <td>
                                 <form method="post" action="{{url('/professor/test/export')}}">
@@ -102,4 +102,8 @@
 
 @endsection
 
-
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+    <div class="wave wave4"></div>
+</section>

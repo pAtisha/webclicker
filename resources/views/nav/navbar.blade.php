@@ -3,8 +3,8 @@
         <a class="navbar-brand text-white" href="{{ url('/') }}">
             {{ config('app.name', 'WebClicker') }}
         </a>
-        <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon text-white"></span>
+        <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
@@ -19,7 +19,7 @@
 
             @if(Auth::user()->isProfessor())
 
-                <li class="nav-item"><a href="/professor/courses" class="nav-link fw-bold">Moji kursevi</a></li>
+                <li class="nav-item"><a href="/professor/courses" class="nav-link fw-bold text-white">Moji kursevi</a></li>
 
             @endif
             @if(Auth::user()->isAdmin())

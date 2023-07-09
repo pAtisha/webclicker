@@ -24,11 +24,11 @@ Route::get('/', function () {
     {
         if(Auth::user()->isStudent())
         {
-            return redirect('student/home');
+            return redirect('student/courses');
         } elseif(Auth::user()->isProfessor()) {
-            return redirect('professor/home');
+            return redirect('professor/courses');
         } else {
-            return redirect('admin/home');
+            return redirect('admin/users');
         }
 
     }

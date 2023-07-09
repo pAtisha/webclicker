@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<section>
 @section('content')
 
     @include('professor_pages.questions.create')
@@ -10,7 +10,7 @@
     @include('professor_pages.answers.edit')
     @include('professor_pages.answers.create')
 
-    <div class="container">
+    <div class="container form-floating">
         <div class="row justify-content-center">
             <div class="col-md-8">
 
@@ -18,10 +18,10 @@
 
 
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/professor/home">Početna</a></li>
-                        <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses">Kursevi</a></li>
-                        <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses/{{$course_id}}">Testovi</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Pitanja</li>
+                        <li class="breadcrumb-item"><a href="/professor/home" class="text-white">Početna</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses" class="text-white">Kursevi</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses/{{$course_id}}" class="text-white">Testovi</a></li>
+                        <li class="breadcrumb-item active text-white-50" aria-current="page">Pitanja</li>
                     </ol>
 
                 </nav>
@@ -30,12 +30,12 @@
                 @include('messages.success')
 
 
-                <hr class="border border-dark border-2 opacity-50">
-                <h4 class="text-center fw-bold">{{$test->name}}</h4>
-                <button class="btn btn-primary btn-create-question" value="{{$test->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addQuestionModal">Dodaj Novo Pitanje</button>
-                <button class="btn btn-info btn-create-existing-question" value="{{$course_id}}" style="float: right; margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#addExistingQuestionModal">Dodaj Staro Pitanje</button>
+                <hr class="border border-white border-1 opacity-100">
+                <h4 class="text-center fw-bold text-white">{{$test->name}}</h4>
+                <button class="btn btn-outline-light btn-white-blue btn-create-question" value="{{$test->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addQuestionModal">Dodaj Novo Pitanje</button>
+                <button class="btn btn-outline-light btn-white-blue btn-create-existing-question" value="{{$course_id}}" style="float: right; margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#addExistingQuestionModal">Dodaj Staro Pitanje</button>
 
-                <table class="table table-striped sortable">
+                <table class="table text-white sortable">
                     <thead>
                     <tr>
                         <th scope="col">Pitanje</th>
@@ -47,10 +47,10 @@
                     </thead>
                     <tbody id="question_table">
                     @foreach($questions as $index => $question)
-                        <tr data-id="{{ $question->id }}" class="tr-data-id">
+                        <tr data-id="{{ $question->id }}" class="tr-data-id tr-delete">
                             <td>{{$question->question}}</td>
                             <td>
-                                <button class="btn btn-primary btn-toggle-up-down{{$question->id}}" data-bs-toggle="collapse" href="#collapseAnswers{{$question->id}}" role="button" aria-expanded="false" aria-controls="collapseAnswers{{$question->id}}"><i class="bi bi-chevron-down"></i></button>
+                                <button class="btn btn-outline-light btn-white-blue btn-toggle-up-down{{$question->id}}" data-bs-toggle="collapse" href="#collapseAnswers{{$question->id}}" role="button" aria-expanded="false" aria-controls="collapseAnswers{{$question->id}}"><i class="bi bi-chevron-down"></i></button>
                             </td>
                             <td>
                                 @if($question->type == "multi")
@@ -80,10 +80,10 @@
                                 <button class="btn btn-danger btn-delete-question" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal" id="deleteQuestionButton" value="{{$question->id}}">Obriši</button>
                             </td>
                         </tr>
-                        <tr class="collapse" id="collapseAnswers{{$question->id}}">
+                        <tr class="collapse tr-delete-this" id="collapseAnswers{{$question->id}}">
                             <td colspan="6">
-                                <button class="btn btn-primary btn-create-answer" value="{{$question->id}}" style="float: left;" data-bs-toggle="modal" data-bs-target="#addAnswerModal">Dodaj Odgovor</button>
-                                <table class="table">
+                                <button class="btn btn-outline-light btn-white-blue btn-create-answer" value="{{$question->id}}" style="float: left;" data-bs-toggle="modal" data-bs-target="#addAnswerModal">Dodaj Odgovor</button>
+                                <table class="table table-bg text-white sortable">
                                     <thead>
                                     <tr>
                                         <th scope="col">Odgovor</th>
@@ -112,7 +112,7 @@
                                                 <button type="button" class="btn btn-warning btn-edit-answer" data-bs-toggle="modal" data-bs-target="#editAnswerModal" id="editAnswerButton" value="{{$answer->id}}">Izmeni</button>
                                             </td>
                                             <td>
-                                                <button class="btn btn-danger btn-delete-answer" data-bs-toggle="modal" data-bs-target="#deleteAnswerModal" id="deleteAnswerButton" value="{{$answer->id}}">Obriši</button>
+                                                <button class="btn btn-danger btn-danger-hover btn-delete-answer" data-bs-toggle="modal" data-bs-target="#deleteAnswerModal" id="deleteAnswerButton" value="{{$answer->id}}">Obriši</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -129,6 +129,10 @@
     </div>
 
 @endsection
-
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+    <div class="wave wave4"></div>
+</section>
 
 
