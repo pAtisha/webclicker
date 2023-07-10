@@ -9,17 +9,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin/home">Početna</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Korisnici</li>
-                    </ol>
-                </nav>
 
                 @include('messages.errors')
                 @include('messages.success')
 
-                <hr class="border border-dark border-2 opacity-50">
                 <h3 class="text-center fw-bold">Studenti</h3>
 
                 <form class="row g-3" action="{{ url('/admin/getUsers') }}" style="float: right;" method="POST">
@@ -129,3 +122,4 @@
     </div>
 
 @endsection
+

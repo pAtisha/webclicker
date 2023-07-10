@@ -42,7 +42,7 @@ class LoginController extends Controller
         {
             return redirect('professor/courses');
         } else {
-            return redirect('admin/home');
+            return redirect('admin/users');
         }
     }
 

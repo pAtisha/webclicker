@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light">
     <div class="container">
-        <a class="navbar-brand text-white" href="{{ url('/') }}">
+        <a class="navbar-brand @if(Auth::user() && Auth::user()->role != 2) text-white @endif text-white" href="{{ url('/') }}">
             {{ config('app.name', 'WebClicker') }}
         </a>
         <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -37,7 +37,7 @@
 
                 @auth
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle @if(Auth::user()->role != 2) text-white @endif" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
