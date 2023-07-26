@@ -13,7 +13,6 @@
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/professor/home">Početna</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses">Kursevi</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses/{{$course_id}}">Testovi</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses/questions/test/{{$question->test_id}}">Pitanja</a></li>

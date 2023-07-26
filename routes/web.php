@@ -36,6 +36,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('password/reset/notify', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'notify_admin']);
+
 //Google
 Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
 Route::get('callback/google', [GoogleController::class, 'callbackToGoogle']);

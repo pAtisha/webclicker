@@ -41,7 +41,7 @@
                     </thead>
                     <tbody>
                     @foreach($users_students as $user)
-                    <tr>
+                    <tr @if($user->password_reset) class="table-danger" @endif>
                         <td>{{$user->name}}</td>
                         <td>
                             {{$user->index_number}}

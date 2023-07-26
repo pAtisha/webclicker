@@ -25,6 +25,7 @@ class User extends Authenticatable
         'role',
         'gauth_id',
         'gauth_type',
+        'password_reset',
     ];
 
     /**

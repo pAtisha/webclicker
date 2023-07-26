@@ -101,7 +101,12 @@ class TestAnswerController extends Controller
                 $answer_db = Answer::where('test_id', '=', $test_id)
                     ->where('answer', '=', $answer)
                     ->where('question_id', '=', $question->id)
-                    ->get(['answer', 'points'])[0];
+                    ->get(['answer', 'points']);
+
+                if($answer_db->isEmpty())
+                    continue;
+
+                $answer_db = $answer_db[0];
 
                 //Add points
                 $points += $answer_db->points;
@@ -125,7 +130,12 @@ class TestAnswerController extends Controller
                 {
                     foreach ($answers as $answer)
                     {
-                        $answer_db = Answer::where('test_id', '=', $test_id)->where('answer', '=', $answer)->get(['answer', 'points'])[0];
+                        $answer_db = Answer::where('test_id', '=', $test_id)->where('answer', '=', $answer)->get(['answer', 'points']);
+
+                        if($answer_db->isEmpty())
+                            continue;
+
+                        $answer_db = $answer_db[0];
 
                         //add points
                         $points += $answer_db->points;

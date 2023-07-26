@@ -1,3 +1,8 @@
+<?php
+header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+header("Pragma: no-cache"); // HTTP 1.0.
+header("Expires: 0 "); // Proxies.
+?>
 @extends('layouts.app')
 <section>
 @section('content')
@@ -5,6 +10,7 @@
     <div class="container form-floating">
         <form action="/student/test/send" method="POST" id="submit_test">
             @csrf
+
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <h3 class="text-center text-white">{{$test->name}}</h3>

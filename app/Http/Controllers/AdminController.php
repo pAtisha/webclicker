@@ -31,6 +31,7 @@ class AdminController extends Controller
     {
         $users_students = DB::table('users')
             ->where('role', '=', 0)
+            ->orderBy('password_reset', 'desc')
             ->paginate(10);
 
         $users_professors = DB::table('users')
@@ -97,6 +98,7 @@ class AdminController extends Controller
                             'index_number' => $request->index_number,
                             'email' => $request->email,
                             'password' => $pw,
+                            'password_reset' => 0,
                         ]
                     );
                 }

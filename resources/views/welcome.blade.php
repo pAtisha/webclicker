@@ -1,8 +1,10 @@
 @extends('layouts.app')
 <section>
-
 @section('content')
+        @include('auth.passwords.password_reset')
     <div class="container col-xl-10 col-xxl-8 px-4 py-5 form-floating">
+        @include('messages.errors')
+        @include('messages.success')
         <div class="row align-items-center g-lg-5 py-5">
             <div class="col-lg-7 text-center text-lg-start">
                 <h1 class="display-4 fw-bold lh-1 mb-3 text-white">Dobro došli na WebClicker.</h1>
@@ -34,7 +36,7 @@
                     <div class="checkbox mb-3">
                         <div class="form-check">
                             @if (Route::has('password.request'))
-                                <a class="btn btn-link text-white" style="float: right" href="{{ route('password.request') }}">
+                                <a class="btn btn-link text-white" style="float: right" href="#" data-bs-toggle="modal" data-bs-target="#notifyPasswordReset" id="notifyPasswordResetAnchor">
                                     Zaboravljena šifra?
                                 </a>
                             @endif
@@ -58,6 +60,7 @@
         </div>
     </div>
 @endsection
+
     <div class="wave wave1"></div>
     <div class="wave wave2"></div>
     <div class="wave wave3"></div>

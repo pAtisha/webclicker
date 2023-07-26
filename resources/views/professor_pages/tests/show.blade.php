@@ -13,7 +13,6 @@
 
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/professor/home" class="text-white">Početna</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses" class="text-white">Kursevi</a></li>
                         <li class="breadcrumb-item active text-white-50" aria-current="page">Testovi</li>
                     </ol>

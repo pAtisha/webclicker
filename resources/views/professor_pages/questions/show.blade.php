@@ -18,7 +18,6 @@
 
 
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/professor/home" class="text-white">Početna</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses" class="text-white">Kursevi</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses/{{$course_id}}" class="text-white">Testovi</a></li>
                         <li class="breadcrumb-item active text-white-50" aria-current="page">Pitanja</li>
