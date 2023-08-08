@@ -6,7 +6,6 @@ header("Expires: 0 "); // Proxies.
 @extends('layouts.app')
 <section>
 @section('content')
-
     <div class="container form-floating">
         <form action="/student/test/send" method="POST" id="submit_test">
             @csrf
@@ -69,7 +68,25 @@ header("Expires: 0 "); // Proxies.
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success btn-lg" style="margin-left: 80px;">Završi Test</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="finishTestModal" tabindex="-1" aria-labelledby="finishTestModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="finishTestModalLabel">Završi test</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5 class="text-center">Da li zaista želite da završite test?</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ne</button>
+                                    <button type="submit" class="btn btn-success">Završi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success btn-lg" style="margin-left: 80px;" data-bs-toggle="modal" data-bs-target="#finishTestModal" id="finishTestButton">Završi Test</button>
                 </div>
             </div>
         </div>

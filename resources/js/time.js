@@ -2,6 +2,7 @@ $(function() {
 
     let $worked = $("#count");
 
+
     function update() {
         let myTime = $worked.html();
         if(!myTime)
