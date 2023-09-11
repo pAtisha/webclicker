@@ -51,7 +51,7 @@
 
 
                     <button class="w-100 btn btn-lg btn-primary bg-transparent" id="login-btn" type="submit">Prijava</button>
-                        <a href="{{url('auth/google')}}" class="login-with-google-btn w-100 btn btn-lg">Prijavi se preko Gugla</a>
+                        <a href="{{url('auth/google')}}" class="w-100 btn btn-lg login-with-google-btn">Prijavi se preko Gugla</a>
 {{--                    <a class="w-100 btn btn-lg btn-danger" href="{{url('notify-admin')}}">Zahtev za promenu šifre</a>--}}
                     <hr class="my-4 text-white">
                     <p class="text-white">Ukoliko niste kreirali nalog, molimo Vas da se <a href="{{ route('register') }}" class="text-white">registrujete</a>. </p>

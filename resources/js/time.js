@@ -21,7 +21,7 @@ $(function() {
         if($worked.html() == "00:00")
             $('#submit_test').submit();
         if($worked.html() == "00:30")
-            $worked.css("color", "red");
+            $worked.addClass("blink");
         setTimeout(update, 1000);
     }
 

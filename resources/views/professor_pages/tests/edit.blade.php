@@ -20,7 +20,7 @@
                         <input type="password" class="form-control" id="password_test" placeholder="Kurs ne mora sadržati šifru." name="password">
                     </div>
                     <div class="mb-3">
-                        <label for="testTime" class="form-label">Vreme za test</label>
+                        <label for="testTime" class="form-label">Vreme za rešavanje testa(u minutima)</label>
                         <input type="text" class="form-control" id="time_test" name="time">
                     </div>
                 </div>

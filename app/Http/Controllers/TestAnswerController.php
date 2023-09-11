@@ -24,13 +24,13 @@ class TestAnswerController extends Controller
 
         $time = gmdate("i:s", $seconds);
 
-        $questions = Question::where('test_id', '=', $id)->where('active', '=' , 1)->get();
+        $questions = Question::where('test_id', '=', $id)->where('active', '=' , 1)->orderBy('position')->get();
 
         $answersArray = array();
 
         foreach ($questions as $index => $question)
         {
-            $answers = Answer::where('question_id', '=', $question->id)->where('active', '=', 1)->get()->toArray();
+            $answers = Answer::where('question_id', '=', $question->id)->where('active', '=', 1)->orderBy('position')->get()->toArray();
             $answersArray[$index] = $answers;
         }
 
@@ -90,7 +90,7 @@ class TestAnswerController extends Controller
         //points counter
         $points = 0;
 
-        $questions = Question::where('test_id', '=', $test_id)->get();
+        $questions = Question::where('test_id', '=', $test_id)->orderBy('position')->get();
 
         foreach ($questions as $index => $question)
         {

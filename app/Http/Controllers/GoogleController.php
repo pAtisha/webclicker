@@ -33,6 +33,7 @@ class GoogleController extends Controller
                     'gauth_id'=> $user->id,
                     'gauth_type'=> 'google',
                     'password' => encrypt('admin@123'),
+                    'password_reset' => 0,
                 ]);
 
                 Auth::login($newUser);
