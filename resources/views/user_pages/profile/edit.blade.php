@@ -18,7 +18,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-end text-white">Ime i Prezime</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control shadow-none bg-transparent text-white white-border-down @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                     <span class="invalid-feedback text-white" role="alert">
@@ -46,7 +46,7 @@
                                 <label for="index_number" class="col-md-4 col-form-label text-md-end text-white">Broj indeksa</label>
 
                                 <div class="col-md-6">
-                                    <input id="index_number" type="text" class="form-control @error('index_number') is-invalid @enderror" name="index_number" value="{{$user->index_number}}" required autocomplete="index_number">
+                                    <input id="index_number" type="text" class="form-control shadow-none bg-transparent text-white white-border-down @error('index_number') is-invalid @enderror" name="index_number" value="{{$user->index_number}}" required autocomplete="index_number">
 
                                     @error('index_number')
                                     <span class="invalid-feedback text-white" role="alert">
@@ -62,7 +62,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-end text-white">Stara šifra</label>
 
                                 <div class="col-md-6">
-                                    <input id="old_password" type="password" class="form-control @error('password') is-invalid @enderror" name="old_password">
+                                    <input id="old_password" type="password" class="form-control shadow-none bg-transparent text-white white-border-down @error('password') is-invalid @enderror" name="old_password">
 
                                     @error('password')
                                     <span class="invalid-feedback text-white" role="alert">
@@ -76,7 +76,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-end text-white">Nova šifra</label>
 
                                 <div class="col-md-6">
-                                    <input id="new_password" type="password" class="form-control @error('password') is-invalid @enderror" name="new_password">
+                                    <input id="new_password" type="password" class="form-control shadow-none bg-transparent text-white white-border-down @error('password') is-invalid @enderror" name="new_password">
 
                                     @error('password')
                                     <span class="invalid-feedback text-white" role="alert">
@@ -90,7 +90,7 @@
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-end text-white">Potvrda nove šifre</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                                    <input id="password-confirm" type="password" class="form-control shadow-none bg-transparent text-white white-border-down" name="password_confirmation">
                                 </div>
                             </div>
 

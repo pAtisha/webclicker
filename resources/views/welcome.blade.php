@@ -6,12 +6,12 @@
         @include('messages.errors')
         @include('messages.success')
         <div class="row align-items-center g-lg-5 py-5">
-            <div class="col-lg-7 text-center text-lg-start">
+            <div class="col-lg-7 text-center text-lg-start table-bg-blue">
                 <h1 class="display-4 fw-bold lh-1 mb-3 text-white">Dobro došli na WebClicker.</h1>
                 <p class="col-lg-10 fs-4 text-white">Na ovom sajtu možete rešavati testove iz raznih kurseva u dogovoru sa Vašim profesorom. Potrebno je da se registrujete ili prijavite kako biste nastavili.</p>
             </div>
             <div class="col-md-10 mx-auto col-lg-5">
-                <form class="p-4 p-md-5 rounded-3" method="POST" action="{{ route('login') }}">
+                <form class="p-4 p-md-5 rounded-3 table-bg-blue" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control shadow-none bg-transparent text-white white-border-down @error('email') is-invalid @enderror" id="floatingInput" name="email" value="{{ old('email') }}" placeholder="name@example.com" required autocomplete="email">

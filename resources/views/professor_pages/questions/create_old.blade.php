@@ -11,12 +11,21 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
+{{--                        <div class="d-inline-block float-end">--}}
+{{--                            <label for="exampleFormControlInput1" class="form-label">Pretraga</label>--}}
+{{--                            <div class="col-auto">--}}
+{{--                                <label for="question_filter" class="visually-hidden">Pitanje</label>--}}
+{{--                                <input type="text" class="form-control w-auto" id="question_filter" name="question_filter" placeholder="Unesite pitanje...">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <label for="exampleFormControlInput1" class="form-label">Izaberite Kurs</label>
-                        <select class="form-select" aria-label="Default select example" name="course_old" id="course_old">
+                        <select class="form-select w-auto" aria-label="Default select example" name="course_old" id="course_old">
                         </select>
                     </div>
+
+
                     <div class="mb-3">
-                        <form class="row" action="{{ url('/professor/courses/questions-existing/test/create') }}" style="float: right;" method="POST">
+                        <form class="" action="{{ url('/professor/courses/questions-existing/test/create') }}" method="POST">
                             @csrf
                             <table class="table table-striped" id="show_questions_table">
                                 <thead>

@@ -20,7 +20,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses" class="text-white">Kursevi</a></li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses/{{$course_id}}" class="text-white">Testovi</a></li>
-                        <li class="breadcrumb-item active text-white-50" aria-current="page">Pitanja</li>
+                        <li class="breadcrumb-item active text-white-50" aria-current="page">{{$test->name}} - Pitanja</li>
                     </ol>
 
                 </nav>
@@ -34,7 +34,7 @@
                 <button class="btn btn-outline-light btn-white-blue btn-create-question" value="{{$test->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addQuestionModal">Dodaj Novo Pitanje</button>
                 <button class="btn btn-outline-light btn-white-blue btn-create-existing-question" value="{{$course_id}}" style="float: right; margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#addExistingQuestionModal">Dodaj Staro Pitanje</button>
 
-                <table class="table text-white sortable">
+                <table class="table table-bg-blue text-white sortable">
                     <thead>
                     <tr>
                         <th scope="col">Pitanje</th>
@@ -73,10 +73,10 @@
 {{--                                <a class="btn btn-primary" href="{{url('/professor/courses/questions/test/answers/'. $question->id)}}">Idi na odgovore</a>--}}
 {{--                            </td>--}}
                             <td>
-                                <button type="button" class="btn btn-warning btn-edit-question" data-bs-toggle="modal" data-bs-target="#editQuestionModal" id="editQuestionButton" value="{{$question->id}}">Izmeni</button>
+                                <button type="button" class="btn btn-outline-warning btn-edit-question" data-bs-toggle="modal" data-bs-target="#editQuestionModal" id="editQuestionButton" value="{{$question->id}}">Izmeni</button>
                             </td>
                             <td>
-                                <button class="btn btn-danger btn-delete-question" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal" id="deleteQuestionButton" value="{{$question->id}}">Obriši</button>
+                                <button class="btn btn-outline-danger btn-delete-question" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal" id="deleteQuestionButton" value="{{$question->id}}">Obriši</button>
                             </td>
                         </tr>
                         <tr class="collapse tr-delete-this" id="collapseAnswers{{$question->id}}">
@@ -108,10 +108,10 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-warning btn-edit-answer" data-bs-toggle="modal" data-bs-target="#editAnswerModal" id="editAnswerButton" value="{{$answer->id}}">Izmeni</button>
+                                                <button type="button" class="btn btn-outline-warning btn-edit-answer" data-bs-toggle="modal" data-bs-target="#editAnswerModal" id="editAnswerButton" value="{{$answer->id}}">Izmeni</button>
                                             </td>
                                             <td>
-                                                <button class="btn btn-danger btn-danger-hover btn-delete-answer" data-bs-toggle="modal" data-bs-target="#deleteAnswerModal" id="deleteAnswerButton" value="{{$answer->id}}">Obriši</button>
+                                                <button class="btn btn-outline-danger btn-delete-answer" data-bs-toggle="modal" data-bs-target="#deleteAnswerModal" id="deleteAnswerButton" value="{{$answer->id}}">Obriši</button>
                                             </td>
                                         </tr>
                                     @endforeach

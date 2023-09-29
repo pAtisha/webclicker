@@ -137,6 +137,7 @@ Route::prefix('student')->middleware(['auth', 'isStudent'])->group(function (){
 
     //tests
     Route::get('/courses/{id}', [App\Http\Controllers\CourseController::class, 'show_tests']);
+    Route::get('/courses/test/preview/{id}', [App\Http\Controllers\CourseController::class, 'show_test_preview'])->name('test_preview');
 
     //answering test
     Route::get('/test/create/{id}', [App\Http\Controllers\TestAnswerController::class, 'show_entire_test']);

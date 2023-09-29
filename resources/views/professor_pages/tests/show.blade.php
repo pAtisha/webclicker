@@ -14,7 +14,7 @@
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item" aria-current="page"><a href="/professor/courses" class="text-white">Kursevi</a></li>
-                        <li class="breadcrumb-item active text-white-50" aria-current="page">Testovi</li>
+                        <li class="breadcrumb-item active text-white-50" aria-current="page">{{$course->name}} - Testovi</li>
                     </ol>
                 </nav>
 
@@ -26,7 +26,7 @@
                 <h4 class="text-center fw-bold text-white">{{$course->name}}</h4>
                 <button class="btn btn-outline-light btn-white-blue btn-create-test" value="{{$course->id}}" style="float: right;" data-bs-toggle="modal" data-bs-target="#addTestModal">Dodaj Test</button>
 
-                <table class="table text-white sortable">
+                <table class="table table-bg-blue text-white sortable">
                     <thead>
                     <tr>
                         <th scope="col">Naziv</th>
@@ -74,27 +74,27 @@
                                 </form>
                             </td>
                             <td>
-                                <a class="btn btn-outline-light btn-white-blue" href="{{url('/professor/courses/questions/test/'. $test->id)}}">Idi na pitanja</a>
+                                <a class="btn btn-outline-light btn-white-blue" href="{{url('/professor/courses/questions/test/'. $test->id)}}"><i class="bi bi-arrow-right-circle"></i> Pitanja</a>
                             </td>
                             <td>
                                 <form method="post" action="{{url('/professor/test/export')}}">
                                     @csrf
                                     <input hidden="hidden" name="test_id" value="{{$test->id}}">
-                                    <button class="btn btn-success">Rezultati <i class="bi bi-download"></i></button>
+                                    <button class="btn btn-outline-success">Rezultati <i class="bi bi-download"></i></button>
                                 </form>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-edit-test" data-bs-toggle="modal" data-bs-target="#editTestModal" id="editTestButton" value="{{$test->id}}">Izmeni</button>
+                                <button type="button" class="btn btn-outline-warning btn-edit-test" data-bs-toggle="modal" data-bs-target="#editTestModal" id="editTestButton" value="{{$test->id}}">Izmeni</button>
                             </td>
                             <td>
-                                <button class="btn btn-danger btn-delete-test" data-bs-toggle="modal" data-bs-target="#deleteTestModal" id="deleteTestButton" value="{{$test->id}}">Obriši</button>
+                                <button class="btn btn-outline-danger btn-delete-test" data-bs-toggle="modal" data-bs-target="#deleteTestModal" id="deleteTestButton" value="{{$test->id}}">Obriši</button>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
 
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#chooseTestsForResults" id="chooseTestsForResults">Rezultati više testova <i class="bi bi-download"></i></button>
+                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#chooseTestsForResults" id="chooseTestsForResults">Rezultati više testova <i class="bi bi-download"></i></button>
             </div>
         </div>
     </div>

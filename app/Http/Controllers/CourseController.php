@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Follow;
+use App\Models\Question;
 use App\Models\Test;
+use App\Models\TestAnswer;
 use App\Models\Time;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -129,6 +133,7 @@ class CourseController extends Controller
                     if($test->id == $done_test->test_id)
                     {
                         $history_tests[] = [
+                          'id' => $test->id,
                           'name' => $test->name,
                           'starting_time' => $done_test->created_at->format("d/m/Y H:i:s"),
                           'finishing_time' => $done_test->updated_at->format("d/m/Y H:i:s"),
@@ -146,6 +151,54 @@ class CourseController extends Controller
         }
         else
             return redirect()->back()->with('error', 'Morate se prijaviti na kurs!');
+    }
+
+    public function show_test_preview($id)
+    {
+        $user_id = Auth::id();
+        $test_id = $id;
+        $test = Test::find($id);
+
+        $time = Time::where('user_id', '=', $user_id)
+            ->where('test_id', '=', $test_id)
+            ->get();
+
+        $time = $time->last();
+
+        $current_time = Carbon::now();
+
+        $increased = date('Y-m-d H:i:s', strtotime($time->updated_at . '+30 minutes'));
+        if($increased > $current_time)
+            return redirect()->back()->with('error', 'Morate da sačekate 30 minuta nakon završetka testa.');
+
+        $questions = Question::where('test_id', '=', $test_id)->where('active', '=' , 1)->orderBy('position')->get();
+
+        $answersArray = array();
+
+        foreach ($questions as $index => $question)
+        {
+            $answers = Answer::where('question_id', '=', $question->id)->where('active', '=', 1)->orderBy('position')->get()->toArray();
+
+            foreach ($answers as $key => $answer)
+            {
+                $user_answer = TestAnswer::where('test_id', '=', $id)
+                    ->where('user_id', '=', $user_id)
+                    ->where('question_id', '=', $question->id)
+                    ->where('answer', '=', $answer['answer'])
+                    ->get();
+
+                if($user_answer->last())
+                    $answers[$key]['correct'] = true;
+                else
+                    $answers[$key]['correct'] = false;
+            }
+            $answersArray[$index] = $answers;
+        }
+
+        return view('user_pages.tests.preview',
+        ['questions' => $questions,
+            'answersArray' => $answersArray,
+            'test' => $test]);
     }
 
 

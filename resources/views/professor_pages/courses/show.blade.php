@@ -26,7 +26,7 @@
                 <button class="btn btn-outline-light btn-white-blue" style="float: right;" data-bs-toggle="modal" data-bs-target="#addCourseModal">Dodaj Kurs</button>
 
 
-                <table class="table text-white">
+                <table class="table table-bg-blue text-white">
                     <thead>
                     <tr>
                         <th scope="col">Naziv</th>
@@ -57,12 +57,12 @@
 
                                 </form>
                             </td>
-                            <td><a href="{{url('/professor/courses', $course->id)}}" class="btn btn-outline-light btn-white-blue">Idi na testove</a></td>
+                            <td><a href="{{url('/professor/courses', $course->id)}}" class="btn btn-outline-light btn-white-blue"><i class="bi bi-arrow-right-circle"></i> Testovi</a></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-edit-course" data-bs-toggle="modal" data-bs-target="#editCourseModal" id="editCourseButton" value="{{$course->id}}">Izmeni</button>
+                                <button type="button" class="btn btn-outline-warning btn-edit-course" data-bs-toggle="modal" data-bs-target="#editCourseModal" id="editCourseButton" value="{{$course->id}}">Izmeni</button>
                             </td>
                             <td>
-                                <button class="btn btn-danger btn-delete-course" data-bs-toggle="modal" data-bs-target="#deleteCourseModal" id="deleteCourseButton" value="{{$course->id}}">Obriši</button>
+                                <button class="btn btn-outline-danger btn-delete-course" data-bs-toggle="modal" data-bs-target="#deleteCourseModal" id="deleteCourseButton" value="{{$course->id}}">Obriši</button>
                             </td>
                         </tr>
                     @endforeach

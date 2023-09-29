@@ -50,7 +50,7 @@
                                                 @csrf
                                                 <h4 class="card-title text-white"><i class="bi bi-patch-check-fill"></i>
                                                 <a href="{{url('/student/courses', $course->id)}}" class="btn btn-outline-light btn-white-blue">Testovi</a>
-                                                    <button type="submit" class="btn btn-danger ms-1">Odjavi se</button></h4>
+                                                    <button type="submit" class="btn btn-outline-danger ms-1">Odjavi se</button></h4>
                                             </form>
                                         </td>
                                     @endif

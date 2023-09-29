@@ -19,7 +19,7 @@
                     @csrf
                     <div class="col-auto">
                         <label for="inputPassword2" class="visually-hidden">Broj Indeksa</label>
-                        <input type="texy" class="form-control" id="inputPassword2" name="index_number" placeholder="Broj Indeksa">
+                        <input type="text" class="form-control" id="inputPassword2" name="index_number" placeholder="Broj Indeksa">
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary mb-3">Filtriraj</button>

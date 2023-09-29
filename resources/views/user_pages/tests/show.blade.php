@@ -10,14 +10,13 @@
 
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item" aria-current="page"><a href="/student/courses" class="text-white">Kursevi</a></li>
-                        <li class="breadcrumb-item active text-white-50" aria-current="page">Testovi</li>
+                        <li class="breadcrumb-item active text-white-50" aria-current="page">{{$course->name}} - Testovi</li>
                     </ol>
 
                 </nav>
 
                 @include('messages.errors')
                 @include('messages.success')
-
 
                 <hr class="border border-white border-1 opacity-100">
                 <h4 class="text-center fw-bold text-white">{{$course->name}}</h4>
@@ -54,25 +53,28 @@
                     @endif
                 @endforeach
 
-{{--                <hr class="border border-dark border-2 opacity-50">--}}
-                <h4 class="text-center fw-bold text-white"  style="margin-top: 20px;">Istorija Testova</h4>
+                <h4 class="text-center fw-bold text-white"  style="margin-top: 20px;">Istorija Testova <i class="bi bi-clock-history"></i></h4>
 
-                <table class="table text-white">
+                <table class="table table-bg-blue text-white">
                     <thead>
                     <tr>
-                        <th scope="col">Naziv</th>
-                        <th scope="col">Test pokrenut</th>
-                        <th scope="col">Test završen</th>
-                        <th scope="col">Broj osvojenih poena/Maksimalan broj mogućih poena</th>
+                        <th scope="col">Naziv <i class="bi bi-pen"></i></th>
+                        <th scope="col">Pokrenut <i class="bi bi-hourglass-split"></i></th>
+                        <th scope="col">Završen <i class="bi bi-hourglass-bottom"></i></th>
+                        <th scope="col">Osvojeni / Maksimum poeni <i class="bi bi-check2-square"></i></th>
+                        <th scope="col">Pregled <i class="bi bi-eye"></i></th>
                     </tr>
                     </thead>
                     <tbody class="table-group-divider">
                     @foreach($history_tests as $history_test)
                         <tr>
-                        <td>{{$history_test['name']}}</td>
-                        <td>{{$history_test['starting_time']}}</td>
-                        <td>{{$history_test['finishing_time']}}</td>
-                        <td class="text-center">{{$history_test['points']}} / {{$history_test['max_points']}}</td>
+                            <td>{{$history_test['name']}}</td>
+                            <td>{{$history_test['starting_time']}}</td>
+                            <td>{{$history_test['finishing_time']}}</td>
+                            <td class="text-center">{{$history_test['points']}} / {{$history_test['max_points']}}</td>
+                            <td>
+                                <a href="{{route('test_preview', $history_test['id'])}}" class="btn btn-outline-light">Pogledaj</a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
