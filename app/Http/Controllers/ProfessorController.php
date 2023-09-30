@@ -519,9 +519,18 @@ class ProfessorController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function get_questionsJSON($id)
+    public function get_questionsJSON($id, ?string $searchText = null)
     {
-        $questions = Question::where('course_id', '=', $id)->get();
+        if($searchText != null)
+        {
+            $questions = Question::where('course_id', '=', $id)
+                ->where('question', 'like', '%' .$searchText . '%')
+                ->get();
+        }
+        else
+            $questions = Question::where('course_id', '=', $id)
+                ->get();
+
 
         $data = $questions->unique('question');
 

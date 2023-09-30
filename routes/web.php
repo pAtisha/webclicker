@@ -75,7 +75,7 @@ Route::prefix('professor')->middleware(['auth', 'isProfessor'])->group(function 
     Route::get('/courses/get/all', [App\Http\Controllers\ProfessorController::class, 'get_coursesJSON']);
 
     //questions JSON
-    Route::get('/questions/get/{id}', [App\Http\Controllers\ProfessorController::class, 'get_questionsJSON']);
+    Route::get('/questions/get/{id}/{search?}', [App\Http\Controllers\ProfessorController::class, 'get_questionsJSON']);
 
     //answers JSON
     Route::get('/answers/get/{id}', [App\Http\Controllers\ProfessorController::class, 'get_answersJSON']);

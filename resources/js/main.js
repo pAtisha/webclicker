@@ -78,39 +78,83 @@ $(function(){
     $('body').on('change', '#course_old',function (e) {
         let optionSelected = $("option:selected", this);
         let valueSelected = this.value;
+        let searchText = "";
+        searchText += $('#question_filter').val();
+        if(searchText.length < 3)
+            searchText = "";
 
+        draw_table(optionSelected, valueSelected, searchText);
+    });
+
+    let timeout;
+    $('#question_filter').on("input", function() {
+        if(this.value.length >= 3)
+        {
+            // Clear the previous timeout
+            clearTimeout(timeout);
+
+            // Set a new timeout to wait 2 seconds
+            timeout = setTimeout(function() {
+                // If the user is not typing anymore, do something
+                $('#course_old').trigger('change');
+            }, 1000);
+        }
+        else if(this.value.length < 3)
+        {
+            // Clear the previous timeout
+            clearTimeout(timeout);
+
+            // Set a new timeout to wait 2 seconds
+            timeout = setTimeout(function() {
+                // If the user is not typing anymore, do something
+                $('#course_old').trigger('change');
+            }, 1000);
+        }
+    });
+
+    //trigger timeout
+    function trigger_course()
+    {
+
+    }
+
+    function draw_table(optionSelected, valueSelected, searchText)
+    {
         let html_append = "";
 
-        $.get("/professor/questions/get/" + valueSelected, function (data){
+        $("#tbody_delete").empty();
+
+        $.get("/professor/questions/get/" + valueSelected + "/" + searchText, function (data){
+            console.log(data.data);
             $.each(data.data, function(i, item){
                 html_append +=                    "<tr>" +
-                   "<td>" + item.question +"</td>" +
-                   "<td><button value=\""+item.id+"\" type=\"button\" class=\"btn btn-primary btn-toggle-up-down btn-toggle-up-down-copy\" data-bs-toggle=\"collapse\" href=\"#collapseAnswersCopy" + item.id + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseAnswersCopy" + item.id + "\"><i class=\"bi bi-chevron-down\"></i></button></td>" +
-                   "                                        <td>\n" +
-                   "                                            <input name=\"question_id[]\" type=\"checkbox\" aria-label=\"Checkbox for test\" value=\""+item.id+"\">\n" +
-                   "                                        </td>"
-                   +"</tr>" +
-                   "                                    <tr class=\"collapse\" id=\"collapseAnswersCopy"+item.id+"\">\n" +
-                   "                                        <td colspan=\"2\">\n" +
-                   "                                            <table class=\"table\">\n" +
-                   "                                                <thead>\n" +
-                   "                                                <tr>\n" +
-                   "                                                    <th scope=\"col\">Odgovor</th>\n" +
-                   "                                                    <th scope=\"col\">Poeni</th>\n" +
-                   "                                                </tr>\n" +
-                   "                                                </thead>\n" +
-                   "                                                <tbody id=\"answers_tbody"+item.id+"\">\n";
-                    html_append +=                                      "</tbody>\n" +
-                        "                                            </table>\n" +
-                        "                                        </td>\n" +
-                        "                                    </tr>";
-                })
+                    "<td>" + item.question +"</td>" +
+                    "<td><button value=\""+item.id+"\" type=\"button\" class=\"btn btn-primary btn-toggle-up-down btn-toggle-up-down-copy\" data-bs-toggle=\"collapse\" href=\"#collapseAnswersCopy" + item.id + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseAnswersCopy" + item.id + "\"><i class=\"bi bi-chevron-down\"></i></button></td>" +
+                    "                                        <td>\n" +
+                    "                                            <input name=\"question_id[]\" type=\"checkbox\" aria-label=\"Checkbox for test\" value=\""+item.id+"\">\n" +
+                    "                                        </td>"
+                    +"</tr>" +
+                    "                                    <tr class=\"collapse\" id=\"collapseAnswersCopy"+item.id+"\">\n" +
+                    "                                        <td colspan=\"2\">\n" +
+                    "                                            <table class=\"table\">\n" +
+                    "                                                <thead>\n" +
+                    "                                                <tr>\n" +
+                    "                                                    <th scope=\"col\">Odgovor</th>\n" +
+                    "                                                    <th scope=\"col\">Poeni</th>\n" +
+                    "                                                </tr>\n" +
+                    "                                                </thead>\n" +
+                    "                                                <tbody id=\"answers_tbody"+item.id+"\">\n";
+                html_append +=                                      "</tbody>\n" +
+                    "                                            </table>\n" +
+                    "                                        </td>\n" +
+                    "                                    </tr>";
+            })
 
         })
             .done(function (){
                 $('#show_questions_table tbody').append(html_append);
             })
-    });
+    }
 
     //edit buttons
 

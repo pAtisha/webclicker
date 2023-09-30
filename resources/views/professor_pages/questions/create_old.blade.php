@@ -10,14 +10,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-{{--                        <div class="d-inline-block float-end">--}}
-{{--                            <label for="exampleFormControlInput1" class="form-label">Pretraga</label>--}}
-{{--                            <div class="col-auto">--}}
-{{--                                <label for="question_filter" class="visually-hidden">Pitanje</label>--}}
-{{--                                <input type="text" class="form-control w-auto" id="question_filter" name="question_filter" placeholder="Unesite pitanje...">--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                    <div class="mb-12">
+                        <div class="d-inline-block w-50 float-end">
+                            <label for="exampleFormControlInput1" class="form-label">Pretraga</label>
+                            <div class="col-12">
+                                <label for="question_filter" class="visually-hidden">Pitanje</label>
+                                <input type="text" class="form-control" id="question_filter" name="question_filter" placeholder="Unesite deo pitanja...">
+                            </div>
+                        </div>
                         <label for="exampleFormControlInput1" class="form-label">Izaberite Kurs</label>
                         <select class="form-select w-auto" aria-label="Default select example" name="course_old" id="course_old">
                         </select>
@@ -35,7 +35,7 @@
                                     <th scope="col">Izaberi pitanja</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tbody_delete">
 {{--                                @foreach($questions as $index => $question)--}}
 {{--                                    <tr>--}}
 {{--                                        <td>{{$question->question}}</td>--}}
