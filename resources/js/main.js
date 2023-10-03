@@ -112,11 +112,6 @@ $(function(){
         }
     });
 
-    //trigger timeout
-    function trigger_course()
-    {
-
-    }
 
     function draw_table(optionSelected, valueSelected, searchText)
     {
@@ -125,7 +120,6 @@ $(function(){
         $("#tbody_delete").empty();
 
         $.get("/professor/questions/get/" + valueSelected + "/" + searchText, function (data){
-            console.log(data.data);
             $.each(data.data, function(i, item){
                 html_append +=                    "<tr>" +
                     "<td>" + item.question +"</td>" +

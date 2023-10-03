@@ -34,7 +34,7 @@ Route::get('/', function () {
     }
 
     return view('welcome');
-});
+})->name('/');
 
 Route::post('password/reset/notify', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'notify_admin']);
 
